@@ -1,0 +1,2 @@
+﻿To create a new Tubular type, follow the template of the existing types
+Do not forget to add the new type to the ENUM and to the required TubularFactory
