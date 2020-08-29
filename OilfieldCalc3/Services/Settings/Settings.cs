@@ -74,8 +74,8 @@ namespace OilfieldCalc3.Services.Settings
         #endregion
 
         #region Public Methods
-        public UnitBase GetComplexValueOrDefault(string key, UnitBase defaultValue) => GetComplexValueOrDefaultInternal(key, defaultValue);
-        public Task AddOrUpdateComplexValue(string key, UnitBase value) => AddOrUpdateComplexValueInternal(key, value);
+        public UnitBase GetComplexValueOrDefault(string key, UnitBase defaultValue) => GetValueOrDefaultInternal(key, defaultValue);
+        public Task AddOrUpdateComplexValue(string key, UnitBase value) => AddOrUpdateValueInternal(key, value);
         public Task AddOrUpdateValue(string key, bool value) => AddOrUpdateValueInternal(key, value);
         public Task AddOrUpdateValue(string key, string value) => AddOrUpdateValueInternal(key, value);
         public bool GetValueOrDefault(string key, bool defaultValue) => GetValueOrDefaultInternal(key, defaultValue);
@@ -84,112 +84,38 @@ namespace OilfieldCalc3.Services.Settings
 
         #region Internal Implementation
         /// <summary>
-        /// Complex Values dealt with here because they need to be deserialized
-        /// prior to use in their respective objects
+        /// All values are deserialized and restored to their respective base objects
         /// </summary>
         /// <typeparam name="T">Generic return type</typeparam>
         /// <param name="key">Reference key</param>
         /// <param name="defaultValue">Default value to be used in no key exists</param>
         /// <returns></returns>
-        private T GetComplexValueOrDefaultInternal<T>(string key, T defaultValue = default(T))
+        private T GetValueOrDefaultInternal<T>(string key, T defaultValue = default(T))
         {
             object value = null;
-            
-            if (Application.Current.Properties.ContainsKey(key))
+
+            if(Preferences.ContainsKey(key))
             {
-                value = JsonConvert.DeserializeObject<T>((string)Application.Current.Properties[key], new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
+                value = JsonConvert.DeserializeObject<T>((string)Preferences.Get(key, null), new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
             }
             return null != value ? (T)value : defaultValue;
         }
 
         /// <summary>
-        /// Adds or updates a complex by serializing the data into a JSON string
-        /// prior to saving with the preferences.
+        /// Value is serialized prior to storage as string.
         /// </summary>
         /// <typeparam name="T">Generic type</typeparam>
         /// <param name="key">Reference key for lookup</param>
         /// <param name="value">Value of the data being saved to preferences.</param>
         /// <returns></returns>
-        private async Task AddOrUpdateComplexValueInternal<T>(string key, T value)
-        {
-            if (value == null)
-            {
-                await Remove(key).ConfigureAwait(false);
-            }
-
-            var tempJson = JsonConvert.SerializeObject(value, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
-            Application.Current.Properties[key] = tempJson;
-            try
-            {
-                await Application.Current.SavePropertiesAsync().ConfigureAwait(false);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Unable to save: " + key, " Message: " + ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Adds or updates a property in the preferences.
-        /// </summary>
-        /// <typeparam name="T">Generic type.</typeparam>
-        /// <param name="key">Reference key for lookup.</param>
-        /// <param name="value">Value of the data in primative type.</param>
-        /// <returns></returns>
         private async Task AddOrUpdateValueInternal<T>(string key, T value)
         {
             if (value == null)
             {
-                await Remove(key);
+                await Task.Run(() => Preferences.Remove(key));
             }
 
-            Application.Current.Properties[key] = value;
-            try
-            {
-                await Application.Current.SavePropertiesAsync();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Unable to save: " + key, " Message: " + ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Gets the saves preference or returns the specified default if none exist.
-        /// </summary>
-        /// <typeparam name="T">Generic type.</typeparam>
-        /// <param name="key">Reference key for lookup.</param>
-        /// <param name="defaultValue">Default value to be returned if the key doesn't exist.</param>
-        /// <returns>Preference primative type.</returns>
-        private T GetValueOrDefaultInternal<T>(string key, T defaultValue = default(T))
-        {
-            object value = null;
-            if (Application.Current.Properties.ContainsKey(key))
-            {
-                value = Application.Current.Properties[key];
-            }
-            return null != value ? (T)value : defaultValue;
-        }
-
-        /// <summary>
-        /// Removes a specified key from the preferences.
-        /// </summary>
-        /// <param name="key">Reference key for lookup.</param>
-        /// <returns></returns>
-        private async Task Remove(string key)
-        {
-            try
-            {
-                if (Application.Current.Properties[key] != null)
-                {
-                    Application.Current.Properties.Remove(key);
-                    await Application.Current.SavePropertiesAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Unable to remove: " + key, " Message: " + ex.Message);
-            }
+            Preferences.Set(key, JsonConvert.SerializeObject(value, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All }));
         }
         #endregion
     }

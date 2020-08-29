@@ -53,7 +53,7 @@ namespace OilfieldCalc3.ViewModels
             System.Diagnostics.Debug.WriteLine("UNITS: " + Mass.Kilogram.LongName + " " + Mass.Kilogram.ShortName);
             System.Diagnostics.Debug.WriteLine("String = " + Mass.Kilogram.ToString());
             System.Diagnostics.Debug.WriteLine("Settings service::: " + _unitSettings.LongLengthUnit);
-            _unitSettings.LongLengthUnit = LongLength.Meter;
+            _unitSettings.LongLengthUnit = LongLength.Foot;
             System.Diagnostics.Debug.WriteLine("Settings service::: " + _unitSettings.LongLengthUnit);
         }
     }
