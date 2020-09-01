@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -39,7 +40,15 @@ namespace OilfieldCalc3.UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+#if DEBUG
 
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+
+                this.DebugSettings.EnableFrameRateCounter = true;
+
+            }
+#endif
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -52,7 +61,12 @@ namespace OilfieldCalc3.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Xamarin.Forms.Forms.Init(e);
+                List<System.Reflection.Assembly> assembliesToInclude = new List<System.Reflection.Assembly>();
+                // Add all the renderer assemblies your app uses 
+
+                assembliesToInclude.Add(typeof(Syncfusion.SfNavigationDrawer.XForms.UWP.SfNavigationDrawerRenderer).GetTypeInfo().Assembly);
+
+                Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
