@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="OilfieldCalc3.Views.MainPage"
-             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             x:Class="OilfieldCalc3.Views.SettingsUnitsPage"
              Title="{Binding Title}">
-
     <viewTemplate:ViewPageTemplate>
         <viewTemplate:ViewPageTemplate.Header>
             <StackLayout>
@@ -27,5 +25,4 @@
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Footer>
     </viewTemplate:ViewPageTemplate>
-
 </ContentPage>

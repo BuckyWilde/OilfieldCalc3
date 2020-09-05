@@ -39,6 +39,9 @@ namespace OilfieldCalc3.Services.Settings
 
         private const string MassKey = "mass_unit";
         private static readonly Mass MassDefault = Mass.Kilogram;
+
+        private const string ApplicationThemeKey = "App_theme";
+        private static readonly string ApplicationThemeDefault = "Light";
         #endregion
 
         #region Settings Properties
@@ -70,6 +73,12 @@ namespace OilfieldCalc3.Services.Settings
         {
             get => GetComplexValueOrDefault(MassKey, MassDefault);
             set => AddOrUpdateComplexValue(MassKey, value);
+        }
+
+        public string AppTheme
+        {
+            get => GetValueOrDefault(ApplicationThemeKey, ApplicationThemeDefault);
+            set => AddOrUpdateValue(ApplicationThemeKey, value);
         }
         #endregion
 

@@ -25,8 +25,15 @@ namespace OilfieldCalc3.Services.Settings
         UnitBase VolumeUnit { get; set; }
         UnitBase CapacityUnit { get; set; }
         UnitBase MassUnit { get; set; }
+        string AppTheme { get; set; }
 
         UnitBase GetComplexValueOrDefault(string key, UnitBase defaultValue);
         Task AddOrUpdateComplexValue(string key, UnitBase value);
+
+        bool GetValueOrDefault(string key, bool defaultValue);
+        string GetValueOrDefault(string key, string defaultValue);
+
+        Task AddOrUpdateValue(string key, bool value);
+        Task AddOrUpdateValue(string key, string value);
     }
 }

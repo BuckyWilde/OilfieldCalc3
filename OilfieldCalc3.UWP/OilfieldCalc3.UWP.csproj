@@ -19,6 +19,8 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <PackageCertificateKeyFile>OilfieldCalc3.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>EFE706F080B5EFFEA098B25623E112FC025F84F3</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -131,6 +133,9 @@
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.7.335</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.Buttons">
+      <Version>18.2.0.56</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer">
       <Version>18.2.0.56</Version>
     </PackageReference>
@@ -146,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="OilfieldCalc3.UWP_TemporaryKey.pfx" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

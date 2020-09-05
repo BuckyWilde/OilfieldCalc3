@@ -1,17 +1,14 @@
-﻿using Tubulars;
-using System;
+﻿using OilfieldCalc3.Models.UnitsOfMeasure;
+using OilfieldCalc3.Resx;
+using OilfieldCalc3.Services;
+using OilfieldCalc3.Services.Settings;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using OilfieldCalc3.Services;
-using System.Diagnostics;
-using OilfieldCalc3.Models.UnitsOfMeasure;
-using OilfieldCalc3.Models.UnitsOfMeasure.MassUnits;
-using OilfieldCalc3.Services.Settings;
-using Tubulars.WellboreTubulars;
+using Tubulars;
 using Xamarin.Forms;
 
 namespace OilfieldCalc3.ViewModels
@@ -24,14 +21,18 @@ namespace OilfieldCalc3.ViewModels
         public MainPageViewModel(INavigationService navigationService, IDataService dataService, IUnitSettings unitSettings)
             : base(navigationService)
         {
-            Title = "Main Page";
-
             _dataService = dataService;
             _unitSettings = unitSettings;
 
+            Title = AppResources.MainPageTitle;
+
+            //Load user selected theme from userSettings
+            if(_unitSettings.AppTheme=="Dark")
+                Application.Current.UserAppTheme = OSAppTheme.Dark;
+
             //TODO: test area... remove when finished
             IWellboreTubular wellboreTubular;                           //Holds an instance of the tubular
-            IDrillstringTubular drillstringTubular;                 
+            IDrillstringTubular drillstringTubular;
             ITubularFactory tubularFactory = new TubularFactory();      //instantiate the tubular factory
             ITubularFactory dsTubularFactory = new TubularFactory();
 

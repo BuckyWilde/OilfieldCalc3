@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Syncfusion.XForms.UWP.Border;
+using Syncfusion.XForms.UWP.Buttons;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -65,6 +67,8 @@ namespace OilfieldCalc3.UWP
                 // Add all the renderer assemblies your app uses 
 
                 assembliesToInclude.Add(typeof(Syncfusion.SfNavigationDrawer.XForms.UWP.SfNavigationDrawerRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(SfButtonRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(SfBorderRenderer).GetTypeInfo().Assembly);
 
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 

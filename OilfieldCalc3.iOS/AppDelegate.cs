@@ -26,6 +26,9 @@ namespace OilfieldCalc3.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App(new iOSInitializer()));
 
+            Syncfusion.XForms.iOS.Border.SfBorderRenderer.Init();
+            Syncfusion.XForms.iOS.Buttons.SfButtonRenderer.Init();
+
             return base.FinishedLaunching(app, options);
         }
     }

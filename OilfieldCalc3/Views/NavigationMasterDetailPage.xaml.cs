@@ -3,9 +3,9 @@
 namespace OilfieldCalc3.Views
 {
     [Xamarin.Forms.Xaml.XamlCompilation(Xamarin.Forms.Xaml.XamlCompilationOptions.Compile)]
-    public partial class MainPage : ContentPage
+    public partial class NavigationMasterDetailPage : MasterDetailPage
     {
-        public MainPage()
+        public NavigationMasterDetailPage()
         {
             InitializeComponent();
         }
