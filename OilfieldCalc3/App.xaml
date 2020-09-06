@@ -13,6 +13,8 @@
         <Color x:Key="LightUnavailableTextColor">LightGray</Color>
         <Color x:Key="LightTransparentColor">Transparent</Color>
         <Color x:Key="LightNavigationMenuColor">Aqua</Color>
+        <Color x:Key="LightPageBackgroundColor">#e8e8e8</Color>
+        <Color x:Key="LightPageContentColor">Whitesmoke</Color>
 
         <!-- Dark colors -->
         <Color x:Key="DarkPrimaryColor">Teal</Color>
@@ -22,7 +24,9 @@
         <Color x:Key="DarkUnavailableTextColor">Yellow</Color>
         <Color x:Key="DarkTransparentColor">Transparent</Color>
         <Color x:Key="DarkNavigationMenuColor">Purple</Color>
-
+        <Color x:Key="DarkPageBackgroundColor">black</Color>
+        <Color x:Key="DarkPageContentColor">darkgray</Color>
+        
         <Style x:Key="MediumLabelStyle"
                TargetType="Label">
             <Setter Property="TextColor"
