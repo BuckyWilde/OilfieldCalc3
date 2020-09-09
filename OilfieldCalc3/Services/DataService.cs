@@ -64,10 +64,24 @@ namespace OilfieldCalc3.Services
         /// <returns>Task<IEnumerable<T>> collection of ITubular Items.</returns>
         public async Task<List<T>> GetItemsSortedAsync<T>() where T : ITubular, new()
         {
-            //List<T> tubularList = await Database.Table<T>().OrderBy(x=>x.ItemSortOrder).ToListAsync().ConfigureAwait(false);
+            List<T> tubularList = await Database.Table<T>().ToListAsync().ConfigureAwait(false);
+            ITubular tempTubular;
 
-            //return tubularList.OrderBy(x => x.ItemSortOrder);
-            return await Database.Table<T>().ToListAsync().ConfigureAwait(false);
+            //Bubble sort the items by the integer column: ItemSortOrder
+            for(int j=0;j<=tubularList.Count-2;j++)
+            {
+                for (int i=0;i<=tubularList.Count-2;i++)
+                {
+                    if(tubularList[i].ItemSortOrder>tubularList[i+1].ItemSortOrder)
+                    {
+                        tempTubular = tubularList[i + 1];
+                        tubularList[i + 1] = tubularList[i];
+                        tubularList[i] = (T)tempTubular;
+                    }
+                }
+            }
+
+            return tubularList;
         }
 
         /// <summary>

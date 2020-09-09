@@ -6,11 +6,13 @@ using OilfieldCalc3.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Syncfusion.DataSource.Extensions;
 using Syncfusion.ListView.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Tubulars;
 using Tubulars.DrillstringTubulars;
@@ -24,6 +26,13 @@ namespace OilfieldCalc3.ViewModels
         ISettings _settings;
 
         #region Properties
+        private bool _listviewIsBusy;
+        public bool ListviewIsBusy
+        {
+            get => _listviewIsBusy;
+            set => SetProperty(ref _listviewIsBusy, value);
+        }
+
         private ObservableCollection<ITubular> _drillstringTubulars;
         public ObservableCollection<ITubular> DrillstringTubulars
         {
@@ -106,6 +115,7 @@ namespace OilfieldCalc3.ViewModels
             _settings = settings;
 
             Title = AppResources.DrillstringPageTitle;
+            _listviewIsBusy = false;
 
             #region Initialize Delegate Commands
             //Initialize commands in the constructor using anonymous methods
@@ -138,69 +148,19 @@ namespace OilfieldCalc3.ViewModels
                 }
             }, () => _selectedItem != null);
 
-            UpCommand = new DelegateCommand<object>(async (object param) =>
-            {
-                IDrillstringTubular dst = param as IDrillstringTubular;
-
-                //Move the item up one slot in the collection
-                if (DrillstringTubulars.IndexOf(dst) > 0)
-                {
-                    await Task.Run(() => _drillstringTubulars.Move(DrillstringTubulars.IndexOf(dst), _drillstringTubulars.IndexOf(dst) - 1)).ConfigureAwait(false);
-                    ItemizeSortOrder();
-                }
-            }, (object param) =>
-            {
-                if (param != null && param is IDrillstringTubular)
-                {
-                    DrillstringTubularBase dst = param as DrillstringTubularBase;
-                    return dst.ItemSortOrder != 1;
-                }
-                return false;
-            });
-
-            // DownCommand = new DelegateCommand<object>(OnDownCommandExecuted, CanMoveDown);
-            DownCommand = new DelegateCommand<object>(async (object param) =>
-            {
-                IDrillstringTubular dst = param as IDrillstringTubular;
-
-                if (DrillstringTubulars.IndexOf(dst) < DrillstringTubulars.Count)
-                {
-                    await Task.Run(() => _drillstringTubulars.Move(DrillstringTubulars.IndexOf(dst), _drillstringTubulars.IndexOf(dst) + 1)).ConfigureAwait(false);
-                    ItemizeSortOrder();
-                }
-            }, (object param) =>
-            {
-                if (param != null && param is IDrillstringTubular)
-                {
-                    DrillstringTubularBase dst = param as DrillstringTubularBase;
-                    return dst.ItemSortOrder != _drillstringTubulars.Count;
-                }
-
-                return false;
-            });
-
-            ItemDraggingCommand = new DelegateCommand<ItemDraggingEventArgs>(OnItemDragging);
+            ItemDraggingCommand = new DelegateCommand<ItemDraggingEventArgs>(async (ItemDraggingEventArgs args) =>
+              {
+                  if (args != null && args.Action == DragAction.Drop)
+                  {
+                      ListviewIsBusy = true;
+                      await Xamarin.Forms.Device.InvokeOnMainThreadAsync(() => ItemizeSortOrder()).ConfigureAwait(false);
+                      ListviewIsBusy = false;
+                  }
+              });
             #endregion
         }
 
         #region Private Methods
-        private void OnItemDragging(ItemDraggingEventArgs args)
-        {
-            if (args != null && args.Action == DragAction.Drop)
-            {
-                if(args.OldIndex!=args.NewIndex)
-                {
-                    for (int i = 0; i < _drillstringTubulars.Count; i++)
-                    {
-                        _drillstringTubulars[i].ItemSortOrder = i + 1;
-                        _dataService.SaveItemAsync(_drillstringTubulars[i]);
-                    }
-                }
-                System.Diagnostics.Debug.WriteLine("item Dragging from -> " + args.OldIndex);
-                System.Diagnostics.Debug.WriteLine("item Dragging from -> " + args.NewIndex);
-                System.Diagnostics.Debug.WriteLine("item Dragging from -> " + args.ItemData);
-            }
-        }
 
         private double GetTotalTublarLength()
         {
@@ -264,16 +224,16 @@ namespace OilfieldCalc3.ViewModels
             return totalInternalVolume;
         }
 
-        private void ItemizeSortOrder()
+        private async ValueTask<int> ItemizeSortOrder()
         {
-            foreach (IDrillstringTubular tubular in DrillstringTubulars)
-            {
-                tubular.ItemSortOrder = DrillstringTubulars.IndexOf(tubular) + 1;
-                _dataService.SaveItemAsync(tubular);
-            }
+            int itemsSaved = 0;
 
-            UpCommand.RaiseCanExecuteChanged();
-            DownCommand.RaiseCanExecuteChanged();
+            for (int j = 0; j < DrillstringTubulars.Count; j++)
+            {
+                DrillstringTubulars[j].ItemSortOrder = j;
+                itemsSaved+=await _dataService.SaveItemAsync(DrillstringTubulars[j]).ConfigureAwait(false);
+            }
+            return itemsSaved;
         }
         #endregion
 

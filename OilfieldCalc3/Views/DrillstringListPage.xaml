@@ -33,7 +33,8 @@
                                     AutoFitMode="DynamicHeight" 
                                     DragStartMode="OnDragIndicator"
                                     IsScrollBarVisible="False"
-                                    x:Name="listView">
+                                    x:Name="listView"
+                                   IsBusy="{Binding ListviewIsBusy}">
                 
                 <syncfusion:SfListView.Behaviors>
                     <prism:EventToCommandBehavior EventName="ItemDragging" Command="{Binding ItemDraggingCommand}" EventArgsConverter="{StaticResource itemDraggingEventArgsConverter}"/>

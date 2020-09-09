@@ -49,8 +49,8 @@ namespace OilfieldCalc3.ViewModels
 
             //var x = odb3.SaveItemAsync(wellboreTubular);
             //dataService.DeleteItemAsync(wellboreTubular);
-            dataService.SaveItemAsync(drillstringTubular);
-            System.Diagnostics.Debug.WriteLine("Database Written");
+            //dataService.SaveItemAsync(drillstringTubular);
+            //System.Diagnostics.Debug.WriteLine("Database Written");
 
             System.Diagnostics.Debug.WriteLine("UNITS: " + Mass.Kilogram.LongName + " " + Mass.Kilogram.ShortName);
             System.Diagnostics.Debug.WriteLine("String = " + Mass.Kilogram.ToString());
