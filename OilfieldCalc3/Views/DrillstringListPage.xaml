@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:local="clr-namespace:OilfieldCalc3.Helpers;assembly=OilfieldCalc3"
+             xmlns:viewmodels="clr-namespace:OilfieldCalc3.ViewModels"
+             xmlns:models="clr-namespace:Tubulars.DrillstringTubulars;assembly=Tubulars"
+             xmlns:converters="clr-namespace:OilfieldCalc3.Converters"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OilfieldCalc3.Views.DrillstringListPage"
+             x:Name="ListPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBoolConverter x:Key="invertBool" />
+            <converters:ItemDraggingEventArgsConverter x:Key="itemDraggingEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <viewTemplate:ViewPageTemplate>
+        <viewTemplate:ViewPageTemplate.Header>
+            <StackLayout>
+                <Label Text="Header Area"/>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Header>
+
+        <viewTemplate:ViewPageTemplate.Body>
+            <!--<StackLayout Orientation="Vertical">-->
+            <syncfusion:SfListView ItemsSource="{Binding DrillstringTubulars}" 
+                                    AutoFitMode="DynamicHeight" 
+                                    DragStartMode="OnDragIndicator"
+                                    IsScrollBarVisible="False"
+                                    x:Name="listView">
+                
+                <syncfusion:SfListView.Behaviors>
+                    <prism:EventToCommandBehavior EventName="ItemDragging" Command="{Binding ItemDraggingCommand}" EventArgsConverter="{StaticResource itemDraggingEventArgsConverter}"/>
+                </syncfusion:SfListView.Behaviors>
+                
+                <syncfusion:SfListView.DragDropController>
+                    <syncfusion:DragDropController UpdateSource="True" />
+                </syncfusion:SfListView.DragDropController>
+                
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Vertical">
+                            <Grid ColumnDefinitions="*, auto">
+                                <Expander x:Name="expanderCard" Grid.Column="0" >
+                                    <Expander.Header>
+                                        <Grid ColumnDefinitions="*, Auto, Auto" HeightRequest="35">
+                                            <StackLayout Orientation="Horizontal" 
+                                                         Grid.Column="0">
+                                                <Label FontAttributes="Bold"
+                                                       FontSize="Medium"
+                                                       Text="{Binding Path=ItemDescription}"/>
+                                                <!--Display this next label on UWP only-->
+                                                <ContentView>
+                                                    <OnPlatform x:TypeArguments="View">
+                                                        <On Platform="UWP">
+                                                            <Label FontAttributes="Bold"
+                                                                   FontSize="Medium"
+                                                                   IsVisible="{Binding Source={x:Reference expanderCard}, Path=IsExpanded, Converter={StaticResource invertBool}}">
+                                                                <Label.Text>
+                                                                    <MultiBinding StringFormat="{}{0:F2}{1}">
+                                                                        <Binding Path="OutsideDiameter" />
+                                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}"
+                                                                                 Path="ShortLengthUnit.ShortName" />
+                                                                    </MultiBinding>
+                                                                </Label.Text>
+                                                            </Label>
+                                                        </On>
+                                                    </OnPlatform>
+                                                </ContentView>
+                                            </StackLayout>
+                                            <Label Grid.Column="1"
+                                                   HorizontalTextAlignment="End"
+                                                   FontAttributes="Bold"
+                                                   FontSize="Medium">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0:F2} {1}">
+                                                        <Binding Path="Length" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}"
+                                                                 Path="LongLengthUnit.ShortName" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+
+                                            <!--<StackLayout Orientation="Horizontal"
+                                                         HorizontalOptions="StartAndExpand"
+                                                         VerticalOptions="Start"
+                                                         Grid.Column="2">-->
+                                            <!--<ImageButton Source="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.arrowup_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.arrowup_black.png}}"
+                                                             CornerRadius="5"
+                                                             HeightRequest="30"
+                                                             WidthRequest="30"
+                                                             Command="{Binding BindingContext.UpCommand, Source={x:Reference ListPage}}"
+                                                             CommandParameter="{Binding .}"/>
+                                            <ImageButton Source="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.arrowdown_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.arrowdown_black.png}}"
+                                                             CornerRadius="5"
+                                                             HeightRequest="30"
+                                                             WidthRequest="30"
+                                                             Command="{Binding BindingContext.DownCommand, Source={x:Reference ListPage}}"
+                                                             CommandParameter="{Binding .}"/>-->
+
+                                            <!--</StackLayout>-->
+                                        </Grid>
+                                    </Expander.Header>
+
+                                    <Expander.Content>
+                                        <StackLayout Padding="10, 0, 0, 10">
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="Outside Diameter: {0:F2} {1}">
+                                                        <Binding Path="OutsideDiameter" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}"
+                                                                 Path="ShortLengthUnit.ShortName" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="Inside Diameter: {0:F2} {1}">
+                                                        <Binding Path="InsideDiameter" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}"
+                                                                 Path="ShortLengthUnit.ShortName" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="Adjusted Weight: {0:F2} {1}">
+                                                        <Binding Path="AdjustedWeight" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}"
+                                                                 Path="MassUnit.ShortName" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="Total Weight: {0:F2} {1}">
+                                                        <Binding Path="TotalWeight" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}"
+                                                                 Path="MassUnit.ShortName" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="Capacity: {0:F4} {1}">
+                                                        <Binding Path="InternalCapacityPerUnit" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}"
+                                                                 Path="CapacityUnit.ShortName" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="Volume: {0:F2} {1}">
+                                                        <Binding Path="TotalInternalCapacity" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}"
+                                                                 Path="VolumeUnit.ShortName" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="Displacement: {0:F4} {1}">
+                                                        <Binding Path="DryDisplacementPerUnit" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}"
+                                                                 Path="CapacityUnit.ShortName" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label>
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="Total Disp: {0:F2} {1}">
+                                                        <Binding Path="TotalDryDisplacement" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}"
+                                                                 Path="VolumeUnit.ShortName" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </StackLayout>
+                                    </Expander.Content>
+                                </Expander>
+                                <syncfusion:DragIndicatorView Grid.Column="1" 
+                                                                           ListView="{x:Reference listView}" 
+                                                                           HorizontalOptions="Center" 
+                                                                           VerticalOptions="Start">
+                                    <Image Source="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.drag_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.drag_black.png}}"
+                                                           HeightRequest="30"
+                                                           WidthRequest="30"/>
+                                </syncfusion:DragIndicatorView>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+        </viewTemplate:ViewPageTemplate.Body>
+
+        <viewTemplate:ViewPageTemplate.Footer>
+            <StackLayout>
+                <Label Text="Footer Area"/>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Footer>
+    </viewTemplate:ViewPageTemplate>
+
+</ContentPage>

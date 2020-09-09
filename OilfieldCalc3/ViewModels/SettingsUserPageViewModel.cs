@@ -13,7 +13,7 @@ namespace OilfieldCalc3.ViewModels
 {
     public class SettingsUserPageViewModel : ViewModelBase
     {
-        private readonly IUnitSettings _userSettings;
+        private readonly ISettings _userSettings;
 
         private List<string> _themeOptionsList;
         public List<string> ThemeOptionsList 
@@ -31,7 +31,7 @@ namespace OilfieldCalc3.ViewModels
 
         public DelegateCommand ThemeSelectionChangedCommand { get; set; }
 
-        public SettingsUserPageViewModel(INavigationService navigationService, IUnitSettings userSettings) : base(navigationService)
+        public SettingsUserPageViewModel(INavigationService navigationService, ISettings userSettings) : base(navigationService)
         {
             _userSettings = userSettings;
 

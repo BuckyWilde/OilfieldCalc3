@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                        xmlns:prism="http://prismlibrary.com" 
+                        xmlns:prism="http://prismlibrary.com"
                         xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
                         x:Class="OilfieldCalc3.App">
     <Application.Resources>
@@ -26,7 +26,7 @@
         <Color x:Key="DarkNavigationMenuColor">Purple</Color>
         <Color x:Key="DarkPageBackgroundColor">black</Color>
         <Color x:Key="DarkPageContentColor">darkgray</Color>
-        
+
         <Style x:Key="MediumLabelStyle"
                TargetType="Label">
             <Setter Property="TextColor"
@@ -50,6 +50,5 @@
             <Setter Property="HorizontalTextAlignment"
                     Value="Start" />
         </Style>
-
     </Application.Resources>
 </prism:PrismApplication>

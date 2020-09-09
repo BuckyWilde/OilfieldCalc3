@@ -133,11 +133,26 @@
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.7.335</Version>
     </PackageReference>
-    <PackageReference Include="Syncfusion.Xamarin.Buttons">
-      <Version>18.2.0.56</Version>
+    <PackageReference Include="Syncfusion.Licensing">
+      <Version>18.2.0.57</Version>
     </PackageReference>
-    <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer">
-      <Version>18.2.0.56</Version>
+    <PackageReference Include="Syncfusion.Xamarin.Buttons">
+      <Version>18.2.0.57</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.Core">
+      <Version>18.2.0.57</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.DataSource">
+      <Version>18.2.0.57</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.Expander">
+      <Version>18.2.0.57</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.GridCommon">
+      <Version>18.2.0.57</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfListView">
+      <Version>18.2.0.57</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.5.3.2" />

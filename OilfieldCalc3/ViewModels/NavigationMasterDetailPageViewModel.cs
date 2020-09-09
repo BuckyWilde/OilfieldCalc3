@@ -16,11 +16,11 @@ namespace OilfieldCalc3.ViewModels
     public class NavigationMasterDetailPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private readonly IUnitSettings _settings;
+        private readonly ISettings _settings;
 
         public DelegateCommand<string> NavigateCommand { get; }
 
-        public NavigationMasterDetailPageViewModel(INavigationService navigationService, IUnitSettings settings) : base(navigationService)
+        public NavigationMasterDetailPageViewModel(INavigationService navigationService, ISettings settings) : base(navigationService)
         {
             _navigationService = navigationService;
             _settings = settings;

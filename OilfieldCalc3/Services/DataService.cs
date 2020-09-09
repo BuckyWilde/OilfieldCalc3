@@ -62,11 +62,12 @@ namespace OilfieldCalc3.Services
         /// </summary>
         /// <typeparam name="T">Generic object representing a database table.</typeparam>
         /// <returns>Task<IEnumerable<T>> collection of ITubular Items.</returns>
-        public async Task<IEnumerable<T>> GetItemsSortedAsync<T>() where T : ITubular, new()
+        public async Task<List<T>> GetItemsSortedAsync<T>() where T : ITubular, new()
         {
-            List<T> tubularList = await Database.Table<T>().ToListAsync().ConfigureAwait(false);
+            //List<T> tubularList = await Database.Table<T>().OrderBy(x=>x.ItemSortOrder).ToListAsync().ConfigureAwait(false);
 
-            return tubularList.OrderBy(x => x.ItemSortOrder);
+            //return tubularList.OrderBy(x => x.ItemSortOrder);
+            return await Database.Table<T>().ToListAsync().ConfigureAwait(false);
         }
 
         /// <summary>

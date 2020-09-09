@@ -70,6 +70,15 @@ namespace OilfieldCalc3.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drillstring Details.
+        /// </summary>
+        internal static string DrillstringDetailPageTitle {
+            get {
+                return ResourceManager.GetString("DrillstringDetailPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drillstring Tubulars.
         /// </summary>
         internal static string DrillstringPageTitle {
@@ -192,6 +201,15 @@ namespace OilfieldCalc3.Resx {
         internal static string ThemePickerTitle {
             get {
                 return ResourceManager.GetString("ThemePickerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wellbore Details.
+        /// </summary>
+        internal static string WellboreDetailPageTitle {
+            get {
+                return ResourceManager.GetString("WellboreDetailPageTitle", resourceCulture);
             }
         }
         

@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilfieldCalc3.iOS", "Oilfie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilfieldCalc3.UWP", "OilfieldCalc3.UWP\OilfieldCalc3.UWP.csproj", "{10C9C8CA-5975-44D8-978C-2812B54E49B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubulars", "Tubulars\Tubulars.csproj", "{1A21DD72-3093-400D-A3F8-D5D79203A609}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tubulars", "Tubulars\Tubulars.csproj", "{1A21DD72-3093-400D-A3F8-D5D79203A609}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -178,6 +178,7 @@ Global
 		{8E17CE73-8462-494F-AF42-014BB9184D0E}.AppStore|x64.ActiveCfg = AppStore|iPhone
 		{8E17CE73-8462-494F-AF42-014BB9184D0E}.AppStore|x86.ActiveCfg = AppStore|iPhone
 		{8E17CE73-8462-494F-AF42-014BB9184D0E}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{8E17CE73-8462-494F-AF42-014BB9184D0E}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
 		{8E17CE73-8462-494F-AF42-014BB9184D0E}.Debug|ARM.ActiveCfg = Debug|iPhone
 		{8E17CE73-8462-494F-AF42-014BB9184D0E}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{8E17CE73-8462-494F-AF42-014BB9184D0E}.Debug|iPhone.Build.0 = Debug|iPhone

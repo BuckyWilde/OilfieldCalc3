@@ -37,7 +37,7 @@ namespace OilfieldCalc3
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
 
             containerRegistry.RegisterSingleton<IDataService, DataService>();
-            containerRegistry.RegisterSingleton<IUnitSettings, Settings>();
+            containerRegistry.RegisterSingleton<ISettings, Settings>();
 
             containerRegistry.RegisterForNavigation<NavigationMasterDetailPage, NavigationMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsTabbedPage, SettingsTabbedPageViewModel>();
@@ -45,6 +45,10 @@ namespace OilfieldCalc3
             containerRegistry.RegisterForNavigation<SettingsAdvancedPage, SettingsAdvancedPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsUnitsPage, SettingsUnitsPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsUserPage, SettingsUserPageViewModel>();
+            containerRegistry.RegisterForNavigation<DrillstringListPage, DrillstringListPageViewModel>();
+            containerRegistry.RegisterForNavigation<WellboreListPage, WellboreListPageViewModel>();
+            containerRegistry.RegisterForNavigation<WellboreDetailPage, WellboreDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<DrillstringDetailPage, DrillstringDetailPageViewModel>();
         }
     }
 }

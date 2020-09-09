@@ -22,7 +22,7 @@ using Xamarin.Forms;
 
 namespace OilfieldCalc3.Services.Settings
 {
-    public class Settings : IUnitSettings, ISettings
+    public class Settings : ISettings
     {
         #region UnitSettings Constants
         private const string LongLengthKey = "long_length_unit";
@@ -47,32 +47,32 @@ namespace OilfieldCalc3.Services.Settings
         #region Settings Properties
         public UnitBase LongLengthUnit
         {
-            get => GetComplexValueOrDefault(LongLengthKey, LongLengthDefault);
-            set=> AddOrUpdateComplexValue(LongLengthKey, value);
+            get => GetValueOrDefault(LongLengthKey, LongLengthDefault);
+            set => AddOrUpdateValue(LongLengthKey, value);
         }
 
         public UnitBase ShortLengthUnit
         {
-            get => GetComplexValueOrDefault(ShortLengthKey, ShortLengthDefault);
-            set => AddOrUpdateComplexValue(ShortLengthKey, value);
+            get => GetValueOrDefault(ShortLengthKey, ShortLengthDefault);
+            set => AddOrUpdateValue(ShortLengthKey, value);
         }
 
         public UnitBase VolumeUnit
         {
-            get => GetComplexValueOrDefault(VolumeKey, VolumeDefault);
-            set => AddOrUpdateComplexValue(VolumeKey, value);
+            get => GetValueOrDefault(VolumeKey, VolumeDefault);
+            set => AddOrUpdateValue(VolumeKey, value);
         }
 
         public UnitBase CapacityUnit
         {
-            get => GetComplexValueOrDefault(CapacityKey, CapacityDefault);
-            set => AddOrUpdateComplexValue(CapacityKey, value);
+            get => GetValueOrDefault(CapacityKey, CapacityDefault);
+            set => AddOrUpdateValue(CapacityKey, value);
         }
 
         public UnitBase MassUnit
         {
-            get => GetComplexValueOrDefault(MassKey, MassDefault);
-            set => AddOrUpdateComplexValue(MassKey, value);
+            get => GetValueOrDefault(MassKey, MassDefault);
+            set => AddOrUpdateValue(MassKey, value);
         }
 
         public string AppTheme
@@ -82,49 +82,50 @@ namespace OilfieldCalc3.Services.Settings
         }
         #endregion
 
-        #region Public Methods
-        public UnitBase GetComplexValueOrDefault(string key, UnitBase defaultValue) => GetValueOrDefaultInternal(key, defaultValue);
-        public Task AddOrUpdateComplexValue(string key, UnitBase value) => AddOrUpdateValueInternal(key, value);
-        public Task AddOrUpdateValue(string key, bool value) => AddOrUpdateValueInternal(key, value);
-        public Task AddOrUpdateValue(string key, string value) => AddOrUpdateValueInternal(key, value);
-        public bool GetValueOrDefault(string key, bool defaultValue) => GetValueOrDefaultInternal(key, defaultValue);
-        public string GetValueOrDefault(string key, string defaultValue) => GetValueOrDefaultInternal(key, defaultValue);
-        #endregion
-
-        #region Internal Implementation
-        /// <summary>
-        /// All values are deserialized and restored to their respective base objects
-        /// </summary>
-        /// <typeparam name="T">Generic return type</typeparam>
-        /// <param name="key">Reference key</param>
-        /// <param name="defaultValue">Default value to be used in no key exists</param>
-        /// <returns></returns>
-        private T GetValueOrDefaultInternal<T>(string key, T defaultValue = default(T))
+        #region private Methods
+        //public UnitBase GetValueOrDefault(string key, UnitBase defaultValue) => GetValueOrDefaultInternal(key, defaultValue);
+        private UnitBase GetValueOrDefault(string key, UnitBase defaultValue)
         {
             object value = null;
 
-            if(Preferences.ContainsKey(key))
+            if (Preferences.ContainsKey(key))
             {
-                value = JsonConvert.DeserializeObject<T>((string)Preferences.Get(key, null), new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
+                value = JsonConvert.DeserializeObject<UnitBase>((string)Preferences.Get(key, null), new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All }); 
             }
-            return null != value ? (T)value : defaultValue;
+            return null != value ? (UnitBase)value : defaultValue;
         }
 
-        /// <summary>
-        /// Value is serialized prior to storage as string.
-        /// </summary>
-        /// <typeparam name="T">Generic type</typeparam>
-        /// <param name="key">Reference key for lookup</param>
-        /// <param name="value">Value of the data being saved to preferences.</param>
-        /// <returns></returns>
-        private async Task AddOrUpdateValueInternal<T>(string key, T value)
+        private bool GetValueOrDefault(string key, bool defaultValue) => Preferences.Get(key, defaultValue);
+        private double GetValueOrDefault(string key, double defaultValue) => Preferences.Get(key, defaultValue);
+        private string GetValueOrDefault(string key, string defaultValue) => Preferences.Get(key, defaultValue);
+
+
+
+        private void AddOrUpdateValue(string key, UnitBase value)
         {
             if (value == null)
             {
-                await Task.Run(() => Preferences.Remove(key));
+                Preferences.Remove(key);
             }
-
             Preferences.Set(key, JsonConvert.SerializeObject(value, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All }));
+        }
+
+        private void AddOrUpdateValue(string key, bool value) => Preferences.Set(key, value);
+        private void AddOrUpdateValue(string key, double value) => Preferences.Set(key, value);
+        private void AddOrUpdateValue(string key, string value) => Preferences.Set(key, value);
+        #endregion
+
+        #region Public Methods
+        public bool ContainsKey(string key) => Preferences.ContainsKey(key);
+
+        public void Clear()
+        {
+            Preferences.Clear();
+        }
+
+        public void Remove(string key)
+        {
+            Preferences.Remove(key);
         }
         #endregion
     }

@@ -121,6 +121,10 @@
     <value>Oilfield Calculator 3</value>
     <comment>Application Name</comment>
   </data>
+  <data name="DrillstringDetailPageTitle" xml:space="preserve">
+    <value>Drillstring Details</value>
+    <comment>Title of DrillstringDetailPage</comment>
+  </data>
   <data name="DrillstringPageTitle" xml:space="preserve">
     <value>Drillstring Tubulars</value>
     <comment>Title of DrillstringPage</comment>
@@ -176,6 +180,10 @@
   <data name="ThemePickerTitle" xml:space="preserve">
     <value>Choose application theme</value>
     <comment>Title for theme picker title</comment>
+  </data>
+  <data name="WellboreDetailPageTitle" xml:space="preserve">
+    <value>Wellbore Details</value>
+    <comment>Title of WellboreDetailPage</comment>
   </data>
   <data name="WellborePageTitle" xml:space="preserve">
     <value>Wellbore Tubulars</value>

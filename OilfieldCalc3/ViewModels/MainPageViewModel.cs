@@ -16,9 +16,9 @@ namespace OilfieldCalc3.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         IDataService _dataService;
-        IUnitSettings _unitSettings;
+        ISettings _unitSettings;
 
-        public MainPageViewModel(INavigationService navigationService, IDataService dataService, IUnitSettings unitSettings)
+        public MainPageViewModel(INavigationService navigationService, IDataService dataService, ISettings unitSettings)
             : base(navigationService)
         {
             _dataService = dataService;
@@ -27,6 +27,7 @@ namespace OilfieldCalc3.ViewModels
             Title = AppResources.MainPageTitle;
 
             //Load user selected theme from userSettings
+            //_unitSettings.Clear();
             if(_unitSettings.AppTheme=="Dark")
                 Application.Current.UserAppTheme = OSAppTheme.Dark;
 
@@ -43,12 +44,12 @@ namespace OilfieldCalc3.ViewModels
             System.Diagnostics.Debug.WriteLine("Tubular is:" + wellboreTubular.GetType());
 
             drillstringTubular = dsTubularFactory.CreateDrillstringTubular(DrillstringTubularType.HeviWateDrillPipe);
-            drillstringTubular.ItemID = 4;
+            drillstringTubular.ItemID = 0;
             drillstringTubular.OutsideDiameter = 111d;
 
             //var x = odb3.SaveItemAsync(wellboreTubular);
-            dataService.DeleteItemAsync(wellboreTubular);
-            //dataService.SaveItemAsync(drillstringTubular);
+            //dataService.DeleteItemAsync(wellboreTubular);
+            dataService.SaveItemAsync(drillstringTubular);
             System.Diagnostics.Debug.WriteLine("Database Written");
 
             System.Diagnostics.Debug.WriteLine("UNITS: " + Mass.Kilogram.LongName + " " + Mass.Kilogram.ShortName);
