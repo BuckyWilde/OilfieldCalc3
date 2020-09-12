@@ -100,7 +100,6 @@ namespace Tubulars
             if (obj == null)
                 return 1;
 
-
             if (obj is IDrillstringTubular otherTubular)
                 return this.ItemSortOrder.CompareTo(otherTubular.ItemSortOrder);
             else
@@ -115,7 +114,9 @@ namespace Tubulars
             //string smallLengthUnit = Preferences.Get("smallLengthUnit", "mm");
 
             //return this.InsideDiameter + smallLengthUnit + " ID " + this.ItemDescription;
-            return string.Format("{0} ID {1}", this.InsideDiameter, this.ItemDescription);
+#pragma warning disable CA1305 // Specify IFormatProvider
+            return string.Format("{0} OD {1}", this.OutsideDiameter, this.ItemDescription);
+#pragma warning restore CA1305 // Specify IFormatProvider
         }
     }
 }

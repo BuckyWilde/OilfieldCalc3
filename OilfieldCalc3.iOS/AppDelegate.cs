@@ -3,7 +3,6 @@ using Prism;
 using Prism.Ioc;
 using UIKit;
 
-
 namespace OilfieldCalc3.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -21,8 +20,6 @@ namespace OilfieldCalc3.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            new Syncfusion.SfNavigationDrawer.XForms.iOS.SfNavigationDrawerRenderer();
-
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App(new iOSInitializer()));
 
@@ -36,7 +33,9 @@ namespace OilfieldCalc3.iOS
         }
     }
 
+#pragma warning disable IDE1006 // Naming Styles
     public class iOSInitializer : IPlatformInitializer
+#pragma warning restore IDE1006 // Naming Styles
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {

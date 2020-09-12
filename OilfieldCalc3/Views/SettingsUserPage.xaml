@@ -17,14 +17,23 @@
 
         <viewTemplate:ViewPageTemplate.Body>
             <StackLayout>
-                <Picker Title="{DynamicResource ThemePickerTitle}"
-                        ItemsSource="{Binding  ThemeOptionsList}"
-                        SelectedItem="{Binding SelectedMenuItem}">
-                    <Picker.Behaviors>
-                        <b:EventToCommandBehavior Command="{Binding ThemeSelectionChangedCommand}"
-                                                  EventName="SelectedIndexChanged" />
-                    </Picker.Behaviors>
-                </Picker>
+                <TableView Intent="Settings">
+                    <TableRoot>
+                        <TableSection Title="Color Options">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Use Dark Mode" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                                    <Switch IsToggled="{Binding IsDarkMode, Mode=TwoWay}" >
+                                        <Switch.Behaviors>
+                                            <b:EventToCommandBehavior Command="{Binding ThemeSelectionChangedCommand}"
+                                                                      EventName="Toggled" />
+                                        </Switch.Behaviors>
+                                    </Switch>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Body>
 

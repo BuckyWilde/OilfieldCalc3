@@ -70,6 +70,15 @@ namespace OilfieldCalc3.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string DeleteString {
+            get {
+                return ResourceManager.GetString("DeleteString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drillstring Details.
         /// </summary>
         internal static string DrillstringDetailPageTitle {
@@ -84,6 +93,15 @@ namespace OilfieldCalc3.Resx {
         internal static string DrillstringPageTitle {
             get {
                 return ResourceManager.GetString("DrillstringPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string EditString {
+            get {
+                return ResourceManager.GetString("EditString", resourceCulture);
             }
         }
         
@@ -192,6 +210,15 @@ namespace OilfieldCalc3.Resx {
         internal static string SettingsTabUserTitle {
             get {
                 return ResourceManager.GetString("SettingsTabUserTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string String_Add {
+            get {
+                return ResourceManager.GetString("String_Add", resourceCulture);
             }
         }
         

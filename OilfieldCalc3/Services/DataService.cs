@@ -27,7 +27,7 @@ namespace OilfieldCalc3.Services
         });
 
         private static SQLiteAsyncConnection Database => lazyInitializer.Value;
-        private static bool initialized = false;
+        private static bool initialized;
 
         /// <summary>
         /// Class constructor, initializes a new instance of the <see cref="DataService"/> class.
@@ -40,7 +40,7 @@ namespace OilfieldCalc3.Services
         /// <summary>
         /// Initializes the database tables and creates them if required.
         /// </summary>
-        private async Task InitializeAsync()
+        private static async Task InitializeAsync()
         {
             if (!initialized)
             {
@@ -103,6 +103,9 @@ namespace OilfieldCalc3.Services
         /// <returns>Task<int> Number of records created or updated</returns>
         public async Task<int> SaveItemAsync(ITubular item)
         {
+            if (item == null)
+                throw new System.ArgumentNullException(nameof(item));
+
             //If it is not a new record we are updating
             if (item.ItemID != 0)
             {
@@ -125,7 +128,7 @@ namespace OilfieldCalc3.Services
         /// </summary>
         /// <param name="item">An ITubular object</param>
         /// <returns>Number of records in the referenced table based on item.</returns>
-        private async Task<int> GetRecordCountAsync(ITubular item)
+        private static async Task<int> GetRecordCountAsync(ITubular item)
         {
             if(item.GetType().BaseType==typeof(DrillstringTubularBase))
                 return await Database.Table<DrillPipe>().CountAsync().ConfigureAwait(false);
@@ -144,8 +147,10 @@ namespace OilfieldCalc3.Services
         public async Task<int> DeleteItemAsync(ITubular item)
         {
             //TODO: check for consecutive sort order and repair as needed...
-            var returnValue = Database.DeleteAsync(item);
-            var itemType = item.GetType().BaseType;
+            if (item == null)
+                throw new System.ArgumentNullException(nameof(item));
+
+            var amountDeleted = await Database.DeleteAsync(item).ConfigureAwait(false);
 
             if (item.GetType().BaseType == typeof(DrillstringTubularBase))
                 await RepairSortAsync<DrillPipe>().ConfigureAwait(false);
@@ -153,7 +158,7 @@ namespace OilfieldCalc3.Services
             if (item.GetType().BaseType == typeof(WellboreTubularBase))
                 await RepairSortAsync<Casing>().ConfigureAwait(false);
 
-            return 1;
+            return amountDeleted;
         }
 
         /// <summary>

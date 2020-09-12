@@ -74,7 +74,7 @@ namespace OilfieldCalc3.UWP
 
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                if (e?.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
                 }
@@ -88,7 +88,7 @@ namespace OilfieldCalc3.UWP
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                rootFrame.Navigate(typeof(MainPage), e?.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

@@ -15,19 +15,12 @@ namespace OilfieldCalc3.ViewModels
     {
         private readonly ISettings _userSettings;
 
-        private List<string> _themeOptionsList;
-        public List<string> ThemeOptionsList 
-        { 
-            get => _themeOptionsList;
-            set => SetProperty(ref _themeOptionsList, value);
-        }
-
-        private string _selectedMenuItem;
-        public string SelectedMenuItem
+        private bool _isDarkMode;
+        public bool IsDarkMode
         {
-            get => _selectedMenuItem;
-            set => SetProperty(ref _selectedMenuItem, value);
-        }
+            get => _isDarkMode;
+            set => SetProperty(ref _isDarkMode, value);
+        }        
 
         public DelegateCommand ThemeSelectionChangedCommand { get; set; }
 
@@ -36,32 +29,26 @@ namespace OilfieldCalc3.ViewModels
             _userSettings = userSettings;
 
             Title = AppResources.SettingsTabUserTitle;
-
-            ThemeOptionsList = new List<string>();
-
-            ThemeOptionsList.Add("Light");
-            ThemeOptionsList.Add("Dark");
-
-            _selectedMenuItem = _userSettings.AppTheme;
+            
+            if (_userSettings.AppTheme == "Dark")
+                IsDarkMode = true;
+            else
+                IsDarkMode = false;
 
             ThemeSelectionChangedCommand = new DelegateCommand(ThemeSelectionChanged);
         }
 
         private void ThemeSelectionChanged()
         {
-            ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
-
-            switch(_selectedMenuItem)
+            switch(_isDarkMode)
             {
-                case "Dark":
+                case true:
                     _userSettings.AppTheme = "Dark";
                     Application.Current.UserAppTheme = OSAppTheme.Dark;
                     break;
-                case "Light":
+                case false:
                     _userSettings.AppTheme = "Light";
                     Application.Current.UserAppTheme = OSAppTheme.Light;
-                    break;
-                default:
                     break;
             }
         }

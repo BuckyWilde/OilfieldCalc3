@@ -21,9 +21,9 @@ namespace OilfieldCalc3.ViewModels
 {
     public class DrillstringListPageViewModel : ViewModelBase
     {
-        INavigationService _navigationService;
-        IDataService _dataService;
-        ISettings _settings;
+        private readonly INavigationService _navigationService;
+        private readonly IDataService _dataService;
+        private readonly ISettings _settings;
 
         #region Properties
         private bool _listviewIsBusy;
@@ -38,18 +38,6 @@ namespace OilfieldCalc3.ViewModels
         {
             get => _drillstringTubulars;
             set => SetProperty(ref _drillstringTubulars, value);
-        }
-
-        private IDrillstringTubular _selectedItem;
-        public IDrillstringTubular SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                SetProperty(ref _selectedItem, value);
-                //OnDeleteCommand.RaiseCanExecuteChanged();
-                //OnEditCommand.RaiseCanExecuteChanged();
-            }
         }
 
         //total dry displacement of the steel
@@ -100,11 +88,12 @@ namespace OilfieldCalc3.ViewModels
         #endregion
 
         #region Delegate Commands
-        public DelegateCommand DeleteCommand { get; }
-        public DelegateCommand EditCommand { get; }
+        public DelegateCommand<object> DeleteCommand { get; }
+        public DelegateCommand<object> EditCommand { get; }
         public DelegateCommand<object> UpCommand { get; }
         public DelegateCommand<object> DownCommand { get; }
         public DelegateCommand<ItemDraggingEventArgs> ItemDraggingCommand { get; set; }
+        public DelegateCommand SelectedItemChangedCommand { get; }
         #endregion
 
         public DrillstringListPageViewModel(INavigationService navigationService, IDataService dataService, ISettings settings)
@@ -118,39 +107,35 @@ namespace OilfieldCalc3.ViewModels
             _listviewIsBusy = false;
 
             #region Initialize Delegate Commands
-            //Initialize commands in the constructor using anonymous methods
-            DeleteCommand = new DelegateCommand(async () =>
+            //Initialize commands in the constructor using anonymous methods            
+            DeleteCommand = new DelegateCommand<object>(async (object sender) =>
             {
-                if (_selectedItem is IDrillstringTubular dst)
+                ListviewIsBusy = true;
+                if (sender is IDrillstringTubular dst)
                 {
                     DrillstringTubulars.Remove(dst);   //remove the item from the collection
                     await _dataService.DeleteItemAsync(dst).ConfigureAwait(false); //Delete the record from the database
                 }
 
                 //Recalculate to compensate for the deleted item
-                _totalTubularLength = GetTotalTublarLength();
-                _totalDisplacement = GetTotalDryDisplacement();
-                _totalWeight = GetTotalWeight();
-                _totalVolume = GetTotalInternalVolume();
-
-                UpCommand.RaiseCanExecuteChanged();
-                DownCommand.RaiseCanExecuteChanged();
-            }, () => _selectedItem != null);
+                UpdateTotalProperties();
+                ListviewIsBusy = false;
+            });
 
             //EditCommand = new DelegateCommand(EditCommandExecuted, CanEdit);
-            EditCommand = new DelegateCommand(async () =>
+            EditCommand = new DelegateCommand<object>(async (object sender) =>
             {
-                if (SelectedItem is IDrillstringTubular dst)
+                if (sender is IDrillstringTubular dst)
                 {
                     var navigationParams = new NavigationParameters();
                     navigationParams.Add("drillstringTubular", dst);
                     await _navigationService.NavigateAsync(nameof(DrillstringDetailPage), navigationParams).ConfigureAwait(false);
                 }
-            }, () => _selectedItem != null);
+            });
 
             ItemDraggingCommand = new DelegateCommand<ItemDraggingEventArgs>(async (ItemDraggingEventArgs args) =>
               {
-                  if (args != null && args.Action == DragAction.Drop)
+                  if (args?.Action == DragAction.Drop)
                   {
                       ListviewIsBusy = true;
                       await Xamarin.Forms.Device.InvokeOnMainThreadAsync(() => ItemizeSortOrder()).ConfigureAwait(false);
@@ -210,7 +195,6 @@ namespace OilfieldCalc3.ViewModels
 
         private double GetTotalInternalVolume()
         {
-
             double totalInternalVolume = 0d;
 
             if (_drillstringTubulars != null)
@@ -222,6 +206,14 @@ namespace OilfieldCalc3.ViewModels
                 return totalInternalVolume;
             }
             return totalInternalVolume;
+        }
+
+        private void UpdateTotalProperties()
+        {
+            TotalTubularLength = GetTotalTublarLength();
+            TotalDisplacement = GetTotalDryDisplacement();
+            TotalVolume = GetTotalInternalVolume();
+            TotalWeight = GetTotalWeight();
         }
 
         private async ValueTask<int> ItemizeSortOrder()
@@ -241,13 +233,10 @@ namespace OilfieldCalc3.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            //Make sure these reinitialize to false when returning to this screen...
-            _selectedItem = null;
-            DeleteCommand.RaiseCanExecuteChanged();
-            EditCommand.RaiseCanExecuteChanged();
-
             //Load the drillstring Tubulars from the dataservice.
             DrillstringTubulars = new ObservableCollection<ITubular>(await _dataService.GetItemsSortedAsync<DrillPipe>().ConfigureAwait(false));
+
+            UpdateTotalProperties();
         }
     }
 }

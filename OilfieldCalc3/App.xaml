@@ -15,6 +15,9 @@
         <Color x:Key="LightNavigationMenuColor">Aqua</Color>
         <Color x:Key="LightPageBackgroundColor">#e8e8e8</Color>
         <Color x:Key="LightPageContentColor">Whitesmoke</Color>
+        <Color x:Key="LightDestructiveTextColor">Red</Color>
+        <Color x:Key="LightListViewLabelTextColor">Black</Color>
+        <Color x:Key="LightListViewHeaderLabelColor">Black</Color>
 
         <!-- Dark colors -->
         <Color x:Key="DarkPrimaryColor">Teal</Color>
@@ -26,6 +29,39 @@
         <Color x:Key="DarkNavigationMenuColor">Purple</Color>
         <Color x:Key="DarkPageBackgroundColor">black</Color>
         <Color x:Key="DarkPageContentColor">darkgray</Color>
+        <Color x:Key="DarkDestructiveTextColor">Red</Color>
+        <Color x:Key="DarkListViewLabelTextColor">LightGray</Color>
+        <Color x:Key="DarkListViewHeaderLabelColor">LightGray</Color>
+
+        <Style x:Key="ListViewHeaderLabel"
+               TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="Medium" />
+            <Setter Property="FontAttributes"
+                    Value="Bold" />
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Dark={StaticResource DarkListViewHeaderLabelColor}, Light={StaticResource LightListViewHeaderLabelColor}}" />
+        </Style>
+
+        <Style x:Key="ListViewLabel"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightListViewLabelTextColor}, Dark={StaticResource DarkListViewLabelTextColor}}" />
+        </Style>
+
+        <Style x:Key="sfListViewButton"
+               TargetType="buttons:SfButton">
+            <Setter Property="CornerRadius"
+                    Value="20" />
+            <Setter Property="ShowIcon"
+                    Value="True" />
+            <Setter Property="ImageWidth"
+                    Value="40" />
+            <Setter Property="ImageAlignment"
+                    Value="End" />
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+        </Style>
 
         <Style x:Key="MediumLabelStyle"
                TargetType="Label">

@@ -2,12 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:prismNav="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
              xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:local="clr-namespace:OilfieldCalc3.Helpers;assembly=OilfieldCalc3"
              xmlns:viewmodels="clr-namespace:OilfieldCalc3.ViewModels"
-             xmlns:models="clr-namespace:Tubulars.DrillstringTubulars;assembly=Tubulars"
+             xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
              xmlns:converters="clr-namespace:OilfieldCalc3.Converters"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="OilfieldCalc3.Views.DrillstringListPage"
              x:Name="ListPage"
@@ -20,24 +22,42 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{prismNav:NavigateTo DrillstringDetailPage}"
+                     Text="{x:Static resources:AppResources.String_Add}"
+                     Order="Primary"
+                     Priority="0"
+                     IconImageSource="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.add_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.add_black.png}}"/>
+    </ContentPage.ToolbarItems>
+
     <viewTemplate:ViewPageTemplate>
         <viewTemplate:ViewPageTemplate.Header>
             <StackLayout>
-                <Label Text="Header Area"/>
+                <Label>
+                    <Label.Text>
+                        <MultiBinding StringFormat="Total Length = {0:F2} {1}">
+                            <Binding Path="TotalTubularLength" />
+                            <Binding Path="LongLengthUnit.ShortName" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Header>
 
         <viewTemplate:ViewPageTemplate.Body>
             <!--<StackLayout Orientation="Vertical">-->
             <syncfusion:SfListView ItemsSource="{Binding DrillstringTubulars}" 
-                                    AutoFitMode="DynamicHeight" 
-                                    DragStartMode="OnDragIndicator"
-                                    IsScrollBarVisible="False"
-                                    x:Name="listView"
+                                   AutoFitMode="DynamicHeight" 
+                                   DragStartMode="OnDragIndicator"
+                                   IsScrollBarVisible="False"
+                                   x:Name="listView"
+                                   SelectionMode="None"
                                    IsBusy="{Binding ListviewIsBusy}">
                 
                 <syncfusion:SfListView.Behaviors>
-                    <prism:EventToCommandBehavior EventName="ItemDragging" Command="{Binding ItemDraggingCommand}" EventArgsConverter="{StaticResource itemDraggingEventArgsConverter}"/>
+                    <prism:EventToCommandBehavior EventName="ItemDragging" 
+                                                  Command="{Binding ItemDraggingCommand}" 
+                                                  EventArgsConverter="{StaticResource itemDraggingEventArgsConverter}"/>
                 </syncfusion:SfListView.Behaviors>
                 
                 <syncfusion:SfListView.DragDropController>
@@ -48,20 +68,19 @@
                     <DataTemplate>
                         <StackLayout Orientation="Vertical">
                             <Grid ColumnDefinitions="*, auto">
-                                <Expander x:Name="expanderCard" Grid.Column="0" >
+                                <Expander x:Name="expanderCard"                                          
+                                          Grid.Column="0" >
                                     <Expander.Header>
                                         <Grid ColumnDefinitions="*, Auto, Auto" HeightRequest="35">
                                             <StackLayout Orientation="Horizontal" 
                                                          Grid.Column="0">
-                                                <Label FontAttributes="Bold"
-                                                       FontSize="Medium"
+                                                <Label Style="{StaticResource ListViewHeaderLabel}"
                                                        Text="{Binding Path=ItemDescription}"/>
                                                 <!--Display this next label on UWP only-->
                                                 <ContentView>
                                                     <OnPlatform x:TypeArguments="View">
                                                         <On Platform="UWP">
-                                                            <Label FontAttributes="Bold"
-                                                                   FontSize="Medium"
+                                                            <Label Style="{StaticResource ListViewHeaderLabel}"
                                                                    IsVisible="{Binding Source={x:Reference expanderCard}, Path=IsExpanded, Converter={StaticResource invertBool}}">
                                                                 <Label.Text>
                                                                     <MultiBinding StringFormat="{}{0:F2}{1}">
@@ -77,8 +96,7 @@
                                             </StackLayout>
                                             <Label Grid.Column="1"
                                                    HorizontalTextAlignment="End"
-                                                   FontAttributes="Bold"
-                                                   FontSize="Medium">
+                                                   Style="{StaticResource ListViewHeaderLabel}">
                                                 <Label.Text>
                                                     <MultiBinding StringFormat="{}{0:F2} {1}">
                                                         <Binding Path="Length" />
@@ -87,31 +105,12 @@
                                                     </MultiBinding>
                                                 </Label.Text>
                                             </Label>
-
-                                            <!--<StackLayout Orientation="Horizontal"
-                                                         HorizontalOptions="StartAndExpand"
-                                                         VerticalOptions="Start"
-                                                         Grid.Column="2">-->
-                                            <!--<ImageButton Source="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.arrowup_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.arrowup_black.png}}"
-                                                             CornerRadius="5"
-                                                             HeightRequest="30"
-                                                             WidthRequest="30"
-                                                             Command="{Binding BindingContext.UpCommand, Source={x:Reference ListPage}}"
-                                                             CommandParameter="{Binding .}"/>
-                                            <ImageButton Source="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.arrowdown_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.arrowdown_black.png}}"
-                                                             CornerRadius="5"
-                                                             HeightRequest="30"
-                                                             WidthRequest="30"
-                                                             Command="{Binding BindingContext.DownCommand, Source={x:Reference ListPage}}"
-                                                             CommandParameter="{Binding .}"/>-->
-
-                                            <!--</StackLayout>-->
                                         </Grid>
                                     </Expander.Header>
 
                                     <Expander.Content>
                                         <StackLayout Padding="10, 0, 0, 10">
-                                            <Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
                                                 <Label.Text>
                                                     <MultiBinding StringFormat="Outside Diameter: {0:F2} {1}">
                                                         <Binding Path="OutsideDiameter" />
@@ -120,7 +119,7 @@
                                                     </MultiBinding>
                                                 </Label.Text>
                                             </Label>
-                                            <Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
                                                 <Label.Text>
                                                     <MultiBinding StringFormat="Inside Diameter: {0:F2} {1}">
                                                         <Binding Path="InsideDiameter" />
@@ -129,7 +128,7 @@
                                                     </MultiBinding>
                                                 </Label.Text>
                                             </Label>
-                                            <Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
                                                 <Label.Text>
                                                     <MultiBinding StringFormat="Adjusted Weight: {0:F2} {1}">
                                                         <Binding Path="AdjustedWeight" />
@@ -138,7 +137,7 @@
                                                     </MultiBinding>
                                                 </Label.Text>
                                             </Label>
-                                            <Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
                                                 <Label.Text>
                                                     <MultiBinding StringFormat="Total Weight: {0:F2} {1}">
                                                         <Binding Path="TotalWeight" />
@@ -147,7 +146,7 @@
                                                     </MultiBinding>
                                                 </Label.Text>
                                             </Label>
-                                            <Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
                                                 <Label.Text>
                                                     <MultiBinding StringFormat="Capacity: {0:F4} {1}">
                                                         <Binding Path="InternalCapacityPerUnit" />
@@ -156,7 +155,7 @@
                                                     </MultiBinding>
                                                 </Label.Text>
                                             </Label>
-                                            <Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
                                                 <Label.Text>
                                                     <MultiBinding StringFormat="Volume: {0:F2} {1}">
                                                         <Binding Path="TotalInternalCapacity" />
@@ -165,7 +164,7 @@
                                                     </MultiBinding>
                                                 </Label.Text>
                                             </Label>
-                                            <Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
                                                 <Label.Text>
                                                     <MultiBinding StringFormat="Displacement: {0:F4} {1}">
                                                         <Binding Path="DryDisplacementPerUnit" />
@@ -174,7 +173,7 @@
                                                     </MultiBinding>
                                                 </Label.Text>
                                             </Label>
-                                            <Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
                                                 <Label.Text>
                                                     <MultiBinding StringFormat="Total Disp: {0:F2} {1}">
                                                         <Binding Path="TotalDryDisplacement" />
@@ -183,16 +182,31 @@
                                                     </MultiBinding>
                                                 </Label.Text>
                                             </Label>
+                                            <Grid ColumnDefinitions="*, *, *">
+                                                <buttons:SfButton Text="{x:Static resources:AppResources.EditString}" 
+                                                                  ImageSource="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.edit_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.edit_black.png}}"
+                                                                  Style="{StaticResource sfListViewButton}"  
+                                                                  Command="{Binding BindingContext.EditCommand, Source={x:Reference ListPage}}"
+                                                                  CommandParameter="{Binding .}"
+                                                                  Grid.Column="0" />
+                                                <buttons:SfButton Text="{x:Static resources:AppResources.DeleteString}"
+                                                                  ImageSource="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.trash_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.trash_black.png}}"
+                                                                  Style="{StaticResource sfListViewButton}"
+                                                                  TextColor="{AppThemeBinding Dark={StaticResource DarkDestructiveTextColor}, Light={StaticResource LightDestructiveTextColor} }"
+                                                                  Command="{Binding BindingContext.DeleteCommand, Source={x:Reference ListPage}}"
+                                                                  CommandParameter="{Binding .}"
+                                                                  Grid.Column="2" />
+                                            </Grid>
                                         </StackLayout>
                                     </Expander.Content>
                                 </Expander>
                                 <syncfusion:DragIndicatorView Grid.Column="1" 
-                                                                           ListView="{x:Reference listView}" 
-                                                                           HorizontalOptions="Center" 
-                                                                           VerticalOptions="Start">
+                                                              ListView="{x:Reference listView}" 
+                                                              HorizontalOptions="Center" 
+                                                              VerticalOptions="Start">
                                     <Image Source="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.drag_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.drag_black.png}}"
-                                                           HeightRequest="30"
-                                                           WidthRequest="30"/>
+                                           HeightRequest="30"
+                                           WidthRequest="30"/>
                                 </syncfusion:DragIndicatorView>
                             </Grid>
                         </StackLayout>
@@ -203,7 +217,47 @@
 
         <viewTemplate:ViewPageTemplate.Footer>
             <StackLayout>
-                <Label Text="Footer Area"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <!--region Footer Left-->
+                    <StackLayout Orientation="Vertical" 
+                                 Grid.Column="0" 
+                                 HorizontalOptions="Start">
+                        <Label>
+                            <Label.Text>
+                                <MultiBinding StringFormat="Total Capacity = {0:F2} {1}">
+                                    <Binding Path="TotalVolume" />
+                                    <Binding Path="VolumeUnit.ShortName" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                        <Label>
+                            <Label.Text>
+                                <MultiBinding StringFormat="Total Disp. = {0:F2} {1,18}">
+                                    <Binding Path="TotalDisplacement" />
+                                    <Binding Path="VolumeUnit.ShortName" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                        <Label>
+                            <Label.Text>
+                                <MultiBinding StringFormat="Total Weight = {0:F2} {1,18}">
+                                    <Binding Path="TotalWeight" />
+                                    <Binding Path="MassUnit.ShortName" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                    </StackLayout>
+                    <!--#endregion-->
+
+                    <!--region Footer Right-->
+                    <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="1" HorizontalOptions="Start">
+                    </StackLayout>
+                    <!--#endregion-->
+                </Grid>
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Footer>
     </viewTemplate:ViewPageTemplate>

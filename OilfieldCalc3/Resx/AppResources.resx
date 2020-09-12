@@ -121,6 +121,10 @@
     <value>Oilfield Calculator 3</value>
     <comment>Application Name</comment>
   </data>
+  <data name="DeleteString" xml:space="preserve">
+    <value>Delete</value>
+    <comment>String = Delete</comment>
+  </data>
   <data name="DrillstringDetailPageTitle" xml:space="preserve">
     <value>Drillstring Details</value>
     <comment>Title of DrillstringDetailPage</comment>
@@ -128,6 +132,10 @@
   <data name="DrillstringPageTitle" xml:space="preserve">
     <value>Drillstring Tubulars</value>
     <comment>Title of DrillstringPage</comment>
+  </data>
+  <data name="EditString" xml:space="preserve">
+    <value>Edit</value>
+    <comment>String = Edit</comment>
   </data>
   <data name="MainPageTitle" xml:space="preserve">
     <value>Main</value>
@@ -176,6 +184,10 @@
   <data name="SettingsTabUserTitle" xml:space="preserve">
     <value>User Settings</value>
     <comment>Title of settings page Tab</comment>
+  </data>
+  <data name="String_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>String = Add</comment>
   </data>
   <data name="ThemePickerTitle" xml:space="preserve">
     <value>Choose application theme</value>
