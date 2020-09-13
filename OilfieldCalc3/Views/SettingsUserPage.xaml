@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
+             xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="OilfieldCalc3.Views.SettingsUserPage"
              Title="{Binding Title}">
@@ -11,7 +12,7 @@
     <viewTemplate:ViewPageTemplate>
         <viewTemplate:ViewPageTemplate.Header>
             <StackLayout>
-                <Label Text="Header Area"/>
+                <!--<Label Text="Header Area"/>-->
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Header>
 
@@ -19,10 +20,14 @@
             <StackLayout>
                 <TableView Intent="Settings">
                     <TableRoot>
-                        <TableSection Title="Color Options">
+                        <TableSection Title="{x:Static resources:AppResources.String_ColorOptions}"
+                                      TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}">
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="Use Dark Mode" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                                <StackLayout Orientation="Horizontal" Padding="20,0,0,0">
+                                    <Label Text="{x:Static resources:AppResources.String_UseDarkMode}"
+                                           Style="{StaticResource SmallLabelStyle}"
+                                           VerticalOptions="Center" 
+                                           HorizontalOptions="StartAndExpand"/>
                                     <Switch IsToggled="{Binding IsDarkMode, Mode=TwoWay}" >
                                         <Switch.Behaviors>
                                             <b:EventToCommandBehavior Command="{Binding ThemeSelectionChangedCommand}"
@@ -39,7 +44,7 @@
 
         <viewTemplate:ViewPageTemplate.Footer>
             <StackLayout>
-                <Label Text="Footer Area"/>
+                <!--<Label Text="Footer Area"/>-->
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Footer>
     </viewTemplate:ViewPageTemplate>

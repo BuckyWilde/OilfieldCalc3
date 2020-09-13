@@ -9,19 +9,22 @@
     <viewTemplate:ViewPageTemplate>
         <viewTemplate:ViewPageTemplate.Header>
             <StackLayout>
-                <Label Text="Header Area"/>
+                <Label Text="Oilfield Calculator ver. 3.0"/>
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Header>
 
         <viewTemplate:ViewPageTemplate.Body>
             <StackLayout>
-                <Label Text="Main Content Area"/>
+                <Label Text="Use of this calculator can help with daily drilling operational calculations on a drilling rig." />
+                <Label Text="This program will also aide in required calculations needed for critical well control operations." />
+                <Label Text="Please remember that this software is provided for reference only and is no substitution for" />
+                <Label Text="Experience and expertise in the event that a well control situation has occured." />
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Body>
 
         <viewTemplate:ViewPageTemplate.Footer>
             <StackLayout>
-                <Label Text="Footer Area"/>
+                <Label Text="Copyright 2020 BWE Inc."/>
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Footer>
     </viewTemplate:ViewPageTemplate>

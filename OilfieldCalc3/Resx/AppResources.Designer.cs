@@ -223,6 +223,24 @@ namespace OilfieldCalc3.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Color Options.
+        /// </summary>
+        internal static string String_ColorOptions {
+            get {
+                return ResourceManager.GetString("String_ColorOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Dark Mode.
+        /// </summary>
+        internal static string String_UseDarkMode {
+            get {
+                return ResourceManager.GetString("String_UseDarkMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose application theme.
         /// </summary>
         internal static string ThemePickerTitle {
