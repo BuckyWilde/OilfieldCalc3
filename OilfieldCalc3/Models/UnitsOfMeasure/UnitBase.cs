@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace OilfieldCalc3.Models.UnitsOfMeasure
@@ -56,6 +57,14 @@ namespace OilfieldCalc3.Models.UnitsOfMeasure
         public override string ToString()
         {
             return LongName;
+        }
+
+        public static List<T> GetUnits<T>() where T : UnitBase
+        {
+            return AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(x => x.GetTypes())
+                .Where(x => typeof(T).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract)
+                .Select(x => Activator.CreateInstance(x)).ToList().ConvertAll(x => (T)x);
         }
     }
 }

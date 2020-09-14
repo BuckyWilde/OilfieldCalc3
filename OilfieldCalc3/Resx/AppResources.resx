@@ -189,13 +189,33 @@
     <value>Add</value>
     <comment>String = Add</comment>
   </data>
+  <data name="String_CapacityUnit" xml:space="preserve">
+    <value>Capaity Unit</value>
+  </data>
   <data name="String_ColorOptions" xml:space="preserve">
     <value>Color Options</value>
     <comment>String = Color Options</comment>
   </data>
+  <data name="String_LongLengthUnit" xml:space="preserve">
+    <value>Long Length Unit</value>
+    <comment>String = Long Length Units</comment>
+  </data>
+  <data name="String_MassUnit" xml:space="preserve">
+    <value>Mass Unit</value>
+  </data>
+  <data name="String_ShortLengthUnit" xml:space="preserve">
+    <value>Short Length Unit</value>
+  </data>
+  <data name="String_UnitOptions" xml:space="preserve">
+    <value>User Selectable Units</value>
+    <comment>String = Units of measure</comment>
+  </data>
   <data name="String_UseDarkMode" xml:space="preserve">
     <value>Use Dark Mode</value>
     <comment>String = Use Dark Mode</comment>
+  </data>
+  <data name="String_VolumeUnit" xml:space="preserve">
+    <value>Volume Unit</value>
   </data>
   <data name="ThemePickerTitle" xml:space="preserve">
     <value>Choose application theme</value>

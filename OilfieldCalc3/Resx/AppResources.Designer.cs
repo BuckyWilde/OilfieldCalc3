@@ -223,6 +223,15 @@ namespace OilfieldCalc3.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Capaity Unit.
+        /// </summary>
+        internal static string String_CapacityUnit {
+            get {
+                return ResourceManager.GetString("String_CapacityUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color Options.
         /// </summary>
         internal static string String_ColorOptions {
@@ -232,11 +241,56 @@ namespace OilfieldCalc3.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Long Length Unit.
+        /// </summary>
+        internal static string String_LongLengthUnit {
+            get {
+                return ResourceManager.GetString("String_LongLengthUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mass Unit.
+        /// </summary>
+        internal static string String_MassUnit {
+            get {
+                return ResourceManager.GetString("String_MassUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Short Length Unit.
+        /// </summary>
+        internal static string String_ShortLengthUnit {
+            get {
+                return ResourceManager.GetString("String_ShortLengthUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Selectable Units.
+        /// </summary>
+        internal static string String_UnitOptions {
+            get {
+                return ResourceManager.GetString("String_UnitOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use Dark Mode.
         /// </summary>
         internal static string String_UseDarkMode {
             get {
                 return ResourceManager.GetString("String_UseDarkMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volume Unit.
+        /// </summary>
+        internal static string String_VolumeUnit {
+            get {
+                return ResourceManager.GetString("String_VolumeUnit", resourceCulture);
             }
         }
         
