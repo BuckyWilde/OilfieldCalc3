@@ -206,6 +206,9 @@
   <data name="String_ShortLengthUnit" xml:space="preserve">
     <value>Short Length Unit</value>
   </data>
+  <data name="String_TotalLength" xml:space="preserve">
+    <value>Total Length</value>
+  </data>
   <data name="String_UnitOptions" xml:space="preserve">
     <value>User Selectable Units</value>
     <comment>String = Units of measure</comment>

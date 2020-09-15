@@ -268,6 +268,15 @@ namespace OilfieldCalc3.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Length.
+        /// </summary>
+        internal static string String_TotalLength {
+            get {
+                return ResourceManager.GetString("String_TotalLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Selectable Units.
         /// </summary>
         internal static string String_UnitOptions {

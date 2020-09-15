@@ -19,6 +19,8 @@
         <ResourceDictionary>
             <converters:InverseBoolConverter x:Key="invertBool" />
             <converters:ItemDraggingEventArgsConverter x:Key="itemDraggingEventArgsConverter" />
+            <converters:UnitValueMultiConverter x:Key="unitValueMultiConverter" />
+            <resources:AppResources x:Key="appResources" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -33,11 +35,13 @@
     <viewTemplate:ViewPageTemplate>
         <viewTemplate:ViewPageTemplate.Header>
             <StackLayout>
-                <Label>
+                <Label Style="{StaticResource SmallLabelStyle}">
                     <Label.Text>
-                        <MultiBinding StringFormat="Total Length = {0:F2} {1}">
+                        <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                      ConverterParameter="ShortName">
                             <Binding Path="TotalTubularLength" />
-                            <Binding Path="LongLengthUnit.ShortName" />
+                            <Binding Path="LongLengthUnit" />
+                            <Binding Source="{x:Static resources:AppResources.String_TotalLength}"/>
                         </MultiBinding>
                     </Label.Text>
                 </Label>
