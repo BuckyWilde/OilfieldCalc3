@@ -6,7 +6,7 @@ namespace OilfieldCalc3.Models.UnitsOfMeasure.MassUnits
 {
     public class Kilograms : Mass
     {
-        public override string LongName => "kilogram";
+        public override string LongName => "kilograms";
         public override string ShortName => "kg";
         public override double ConversionFactor => 1d;
     }

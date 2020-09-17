@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
              xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="OilfieldCalc3.Views.SettingsAdvancedPage"
@@ -9,19 +10,31 @@
     <viewTemplate:ViewPageTemplate>
         <viewTemplate:ViewPageTemplate.Header>
             <StackLayout>
-                <Label Text="Header Area"/>
+                <Label Text="{x:Static resources:AppResources.String_AdminOptions}"/>
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Header>
 
         <viewTemplate:ViewPageTemplate.Body>
             <StackLayout>
-                <Label Text="Main Content Area"/>
+                <TableView Intent="Settings">
+                    <TableRoot>
+                        <TableSection Title="{x:Static resources:AppResources.String_DatabaseOptions}"
+                                      TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}">
+                            <ViewCell>
+                                <StackLayout HorizontalOptions="StartAndExpand">
+                                    <Button Text="Clear Database" 
+                                            Command="{Binding WipeDatabaseCommand}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Body>
 
         <viewTemplate:ViewPageTemplate.Footer>
             <StackLayout>
-                <Label Text="Footer Area"/>
+                <Label Text="{x:Static resources:AppResources.AppCopyright}"/>
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Footer>
     </viewTemplate:ViewPageTemplate>  

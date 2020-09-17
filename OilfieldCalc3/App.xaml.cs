@@ -49,6 +49,7 @@ namespace OilfieldCalc3
             containerRegistry.RegisterForNavigation<WellboreListPage, WellboreListPageViewModel>();
             containerRegistry.RegisterForNavigation<WellboreDetailPage, WellboreDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<DrillstringDetailPage, DrillstringDetailPageViewModel>();
+            containerRegistry.RegisterDialog<WipeDatabaseDialogPage, WipeDatabaseDialogPageViewModel>();
         }
     }
 }

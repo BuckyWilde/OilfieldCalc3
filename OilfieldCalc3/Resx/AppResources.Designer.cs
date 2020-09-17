@@ -61,7 +61,25 @@ namespace OilfieldCalc3.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oilfield Calculator 3.
+        ///   Looks up a localized string similar to Use of this calculator can help with daily drilling operational calculations on a drilling rig. This program will also aide in required calculations needed for critical well control operations. Please remember that this software is provided for reference only and is no substitution for Experience and expertise in the event that a well control situation has occured..
+        /// </summary>
+        internal static string AboutMessage {
+            get {
+                return ResourceManager.GetString("AboutMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copyright 2020 BWE Inc..
+        /// </summary>
+        internal static string AppCopyright {
+            get {
+                return ResourceManager.GetString("AppCopyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oilfield Calculator 3.0.0.
         /// </summary>
         internal static string AppTitle {
             get {
@@ -223,6 +241,24 @@ namespace OilfieldCalc3.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adjusted Weight.
+        /// </summary>
+        internal static string String_AdjustedWieght {
+            get {
+                return ResourceManager.GetString("String_AdjustedWieght", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced Administrator Options.
+        /// </summary>
+        internal static string String_AdminOptions {
+            get {
+                return ResourceManager.GetString("String_AdminOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Capaity Unit.
         /// </summary>
         internal static string String_CapacityUnit {
@@ -232,11 +268,47 @@ namespace OilfieldCalc3.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Capacity.
+        /// </summary>
+        internal static string String_Capacty {
+            get {
+                return ResourceManager.GetString("String_Capacty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color Options.
         /// </summary>
         internal static string String_ColorOptions {
             get {
                 return ResourceManager.GetString("String_ColorOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Database Controls.
+        /// </summary>
+        internal static string String_DatabaseOptions {
+            get {
+                return ResourceManager.GetString("String_DatabaseOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Displacement.
+        /// </summary>
+        internal static string String_Displacement {
+            get {
+                return ResourceManager.GetString("String_Displacement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inside Diameter.
+        /// </summary>
+        internal static string String_InsideDiameter {
+            get {
+                return ResourceManager.GetString("String_InsideDiameter", resourceCulture);
             }
         }
         
@@ -259,6 +331,24 @@ namespace OilfieldCalc3.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OD.
+        /// </summary>
+        internal static string String_OD {
+            get {
+                return ResourceManager.GetString("String_OD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outside Diameter.
+        /// </summary>
+        internal static string String_OutsideDiameter {
+            get {
+                return ResourceManager.GetString("String_OutsideDiameter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Short Length Unit.
         /// </summary>
         internal static string String_ShortLengthUnit {
@@ -268,11 +358,38 @@ namespace OilfieldCalc3.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Capacity.
+        /// </summary>
+        internal static string String_TotalCapacity {
+            get {
+                return ResourceManager.GetString("String_TotalCapacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Disp.
+        /// </summary>
+        internal static string String_TotalDisplacement {
+            get {
+                return ResourceManager.GetString("String_TotalDisplacement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Length.
         /// </summary>
         internal static string String_TotalLength {
             get {
                 return ResourceManager.GetString("String_TotalLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Weight.
+        /// </summary>
+        internal static string String_TotalWeight {
+            get {
+                return ResourceManager.GetString("String_TotalWeight", resourceCulture);
             }
         }
         
@@ -291,6 +408,15 @@ namespace OilfieldCalc3.Resx {
         internal static string String_UseDarkMode {
             get {
                 return ResourceManager.GetString("String_UseDarkMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volume.
+        /// </summary>
+        internal static string String_Volume {
+            get {
+                return ResourceManager.GetString("String_Volume", resourceCulture);
             }
         }
         

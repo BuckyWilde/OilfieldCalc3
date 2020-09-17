@@ -3,6 +3,7 @@ using OilfieldCalc3.Models.UnitsOfMeasure;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
@@ -25,14 +26,14 @@ namespace OilfieldCalc3.Converters
                 completeString.Append(metricValue);
 
                 //2nd value is the Unit in use for the value
-                if (values[1] != null)
+                if (values.Length > 1 && values[1] != null)
                 {
                     unitBase = values[1] as UnitBase;
                     conversionFactor = unitBase.ConversionFactor;
                     convertedValue = metricValue * conversionFactor;
 
 #pragma warning disable CA1305 // Specify IFormatProvider
-                    if (unitBase.GetType().BaseType == typeof(LongLength) || unitBase.GetType() == typeof(ShortLength))
+                    if (unitBase.GetType().BaseType == typeof(LongLength) || unitBase.GetType().BaseType == typeof(ShortLength))
                     {
                         completeString = new StringBuilder(string.Format("{0:F2}", convertedValue));
                     }
@@ -43,9 +44,9 @@ namespace OilfieldCalc3.Converters
 #pragma warning restore CA1305 // Specify IFormatProvider
 
                     //3rd value is the string to prepend with for the label
-                    if (values[2] != null)
+                    if (values.Length > 2 && values[2] != null)
                     {
-                        completeString.Insert(0, values[2].ToString() + " = ");
+                        completeString.Insert(0, values[2].ToString() + ": ");
                     }
 
                     if (parameter != null)

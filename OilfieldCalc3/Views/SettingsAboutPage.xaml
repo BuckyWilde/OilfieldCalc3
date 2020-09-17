@@ -4,27 +4,25 @@
              xmlns:prism="http://prismlibrary.com"
              xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
              x:Class="OilfieldCalc3.Views.SettingsAboutPage"
              Title="{Binding Title}">
     <viewTemplate:ViewPageTemplate>
         <viewTemplate:ViewPageTemplate.Header>
             <StackLayout>
-                <Label Text="Oilfield Calculator ver. 3.0"/>
+                <Label Text="{x:Static resources:AppResources.AppTitle}"/>
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Header>
 
         <viewTemplate:ViewPageTemplate.Body>
             <StackLayout>
-                <Label Text="Use of this calculator can help with daily drilling operational calculations on a drilling rig." />
-                <Label Text="This program will also aide in required calculations needed for critical well control operations." />
-                <Label Text="Please remember that this software is provided for reference only and is no substitution for" />
-                <Label Text="Experience and expertise in the event that a well control situation has occured." />
+                <Label Text="{x:Static resources:AppResources.AboutMessage}" />
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Body>
 
         <viewTemplate:ViewPageTemplate.Footer>
             <StackLayout>
-                <Label Text="Copyright 2020 BWE Inc."/>
+                <Label Text="{x:Static resources:AppResources.AppCopyright}"/>
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Footer>
     </viewTemplate:ViewPageTemplate>
