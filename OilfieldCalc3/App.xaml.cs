@@ -41,10 +41,10 @@ namespace OilfieldCalc3
 
             containerRegistry.RegisterForNavigation<NavigationMasterDetailPage, NavigationMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsTabbedPage, SettingsTabbedPageViewModel>();
-            containerRegistry.RegisterForNavigation<SettingsAboutPage, SettingsAboutPageViewModel>();
-            containerRegistry.RegisterForNavigation<SettingsAdvancedPage, SettingsAdvancedPageViewModel>();
-            containerRegistry.RegisterForNavigation<SettingsUnitsPage, SettingsUnitsPageViewModel>();
-            containerRegistry.RegisterForNavigation<SettingsUserPage, SettingsUserPageViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsAboutPage, SettingsTabbedPageViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsAdvancedPage, SettingsTabbedPageViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsUnitsPage, SettingsTabbedPageViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsUserPage, SettingsTabbedPageViewModel>();
             containerRegistry.RegisterForNavigation<DrillstringListPage, DrillstringListPageViewModel>();
             containerRegistry.RegisterForNavigation<WellboreListPage, WellboreListPageViewModel>();
             containerRegistry.RegisterForNavigation<WellboreDetailPage, WellboreDetailPageViewModel>();

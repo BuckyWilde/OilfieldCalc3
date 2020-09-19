@@ -1,18 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Frame xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.75, Desktop=0.5}"
              x:Class="OilfieldCalc3.Views.WipeDatabaseDialogPage"
-             BackgroundColor="White">
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
     <StackLayout>
-        <Label Text="I'm a dialog"
-                HorizontalOptions="CenterAndExpand"/>
-        <Button Text="Close"
-                Command="{Binding CloseCommand}"
-                TextColor="White"
-                HorizontalOptions="FillAndExpand"
-                BackgroundColor="BlueViolet"/>
+        <Label Text="{Static resources:AppResources.String_ClearData}"
+               Style="{StaticResource MediumLabelStyle}"
+               HorizontalOptions="CenterAndExpand"/>
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding ClearDrillstringDatabaseChecked}"/>
+            <Label Text="{Static resources:AppResources.String_ClearDrillstring_Checkbox}"
+                   Style="{StaticResource SmallLabelStyle}"
+                   VerticalTextAlignment="Center"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding ClearWellboreDatabaseChecked}"/>
+            <Label Text="{Static resources:AppResources.String_ClearWellbore_Checkbox}"
+                   Style="{StaticResource SmallLabelStyle}"
+                   VerticalTextAlignment="Center"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding ClearUserSettingsChecked}"/>
+            <Label Text="{Static resources:AppResources.String_ClearSettings_Checkbox}"
+                   Style="{StaticResource SmallLabelStyle}"
+                   VerticalTextAlignment="Center"/>
+        </StackLayout>
+        <Grid ColumnDefinitions="*, *">
+            <syncfusion:SfButton Text="Cancel"
+                                 Grid.Column="0"
+                                 Command="{Binding CloseCommand}"
+                                 Style="{StaticResource sfButton}"
+                                 HorizontalOptions="FillAndExpand"/>
+            <syncfusion:SfButton Text="Clean"
+                                 Grid.Column="1"
+                                 Command="{Binding ClearCommand}"
+                                 TextColor="Red"
+                                 Style="{StaticResource sfButton}"/>
+        </Grid>
     </StackLayout>
 </Frame>

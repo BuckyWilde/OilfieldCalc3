@@ -6,7 +6,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
              x:Class="OilfieldCalc3.Views.SettingsAboutPage"
-             Title="{Binding Title}">
+             Title="{Binding SettingsAboutPageTitle}">
     <viewTemplate:ViewPageTemplate>
         <viewTemplate:ViewPageTemplate.Header>
             <StackLayout>

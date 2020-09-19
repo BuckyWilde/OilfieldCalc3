@@ -277,6 +277,42 @@ namespace OilfieldCalc3.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear Data.
+        /// </summary>
+        internal static string String_ClearData {
+            get {
+                return ResourceManager.GetString("String_ClearData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Drillstring Database.
+        /// </summary>
+        internal static string String_ClearDrillstring_Checkbox {
+            get {
+                return ResourceManager.GetString("String_ClearDrillstring_Checkbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear User Settings.
+        /// </summary>
+        internal static string String_ClearSettings_Checkbox {
+            get {
+                return ResourceManager.GetString("String_ClearSettings_Checkbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Wellbore Database.
+        /// </summary>
+        internal static string String_ClearWellbore_Checkbox {
+            get {
+                return ResourceManager.GetString("String_ClearWellbore_Checkbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color Options.
         /// </summary>
         internal static string String_ColorOptions {

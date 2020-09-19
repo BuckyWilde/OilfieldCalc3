@@ -7,7 +7,7 @@
              xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="OilfieldCalc3.Views.SettingsUserPage"
-             Title="{Binding Title}">
+             Title="{Binding SettingsUserPageTitle}">
     
     <viewTemplate:ViewPageTemplate>
         <viewTemplate:ViewPageTemplate.Header>

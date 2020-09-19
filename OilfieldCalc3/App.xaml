@@ -63,6 +63,20 @@
                     Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
         </Style>
 
+        <Style x:Key="sfButton"
+               TargetType="buttons:SfButton">
+            <Setter Property="CornerRadius"
+                    Value="20" />
+            <Setter Property="ShowIcon"
+                    Value="False" />
+            <Setter Property="ImageWidth"
+                    Value="40" />
+            <Setter Property="ImageAlignment"
+                    Value="End" />
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+        </Style>
+
         <Style x:Key="MediumLabelStyle"
                TargetType="Label">
             <Setter Property="TextColor"
