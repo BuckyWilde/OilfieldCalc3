@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
+             xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OilfieldCalc3.Views.SettingsUnitsPage"
+             Title="{Binding SettingsUnitsPageTitle}">
+    <viewTemplate:ViewPageTemplate>
+        <viewTemplate:ViewPageTemplate.Header>
+            <StackLayout>
+                <Label Text="{x:Static resources:AppResources.String_UnitOptions}"/>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Header>
+
+        <viewTemplate:ViewPageTemplate.Body>
+            <ScrollView>
+                <StackLayout>
+                    <TableView Intent="Settings">
+                        <TableRoot>
+                            <TableSection Title="{x:Static resources:AppResources.String_LongLengthUnit}"
+                                      TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}">
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" Padding="20,0,0,0" HorizontalOptions="FillAndExpand">
+                                        <Picker ItemsSource="{Binding LongLengthUnits}"
+                                            HorizontalOptions="FillAndExpand"
+                                            SelectedItem="{Binding SelectedLongLengthUnit, Mode=TwoWay}"/>
+
+                                    </StackLayout>
+                                </ViewCell>
+                            </TableSection>
+                            <TableSection Title="{x:Static resources:AppResources.String_ShortLengthUnit}"
+                                      TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}">
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" Padding="20,0,0,0" HorizontalOptions="FillAndExpand">
+                                        <Picker ItemsSource="{Binding ShortLengthUnits}"
+                                            HorizontalOptions="FillAndExpand"
+                                            SelectedItem="{Binding SelectedShortLengthUnit, Mode=TwoWay}"/>
+
+                                    </StackLayout>
+                                </ViewCell>
+                            </TableSection>
+                            <TableSection Title="{x:Static resources:AppResources.String_VolumeUnit}"
+                                      TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}">
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" Padding="20,0,0,0" HorizontalOptions="FillAndExpand">
+                                        <Picker ItemsSource="{Binding VolumeUnits}"
+                                            HorizontalOptions="FillAndExpand"
+                                            SelectedItem="{Binding SelectedVolumeUnit, Mode=TwoWay}"/>
+
+                                    </StackLayout>
+                                </ViewCell>
+                            </TableSection>
+                            <TableSection Title="{x:Static resources:AppResources.String_CapacityUnit}"
+                                      TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}">
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" Padding="20,0,0,0" HorizontalOptions="FillAndExpand">
+                                        <Picker ItemsSource="{Binding CapacityUnits}"
+                                            HorizontalOptions="FillAndExpand"
+                                            SelectedItem="{Binding SelectedCapacityUnit, Mode=TwoWay}"/>
+
+                                    </StackLayout>
+                                </ViewCell>
+                            </TableSection>
+                            <TableSection Title="{x:Static resources:AppResources.String_MassUnit}"
+                                      TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}">
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" Padding="20,0,0,0" HorizontalOptions="FillAndExpand">
+                                        <Picker ItemsSource="{Binding MassUnits}"
+                                            HorizontalOptions="FillAndExpand"
+                                            SelectedItem="{Binding SelectedMassUnit, Mode=TwoWay}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                </StackLayout>
+            </ScrollView>
+        </viewTemplate:ViewPageTemplate.Body>
+
+        <viewTemplate:ViewPageTemplate.Footer>
+            <StackLayout>
+                <Label Text="Footer Area"/>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Footer>
+    </viewTemplate:ViewPageTemplate>
+</ContentPage>

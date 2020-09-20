@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:prism="http://prismlibrary.com"
+                  xmlns:models="clr-namespace:OilfieldCalc3.Models"
+                  xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+                  xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+                  xmlns:local="clr-namespace:OilfieldCalc3.Helpers;assembly=OilfieldCalc3"
+                  prism:ViewModelLocator.AutowireViewModel="True"
+                  xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
+                  x:Class="OilfieldCalc3.Views.NavigationMasterDetailPage"
+                  MasterBehavior="Popover">
+
+    <MasterDetailPage.Master>
+        <ContentPage Title="{x:Static resources:AppResources.MenuTitle}"                     
+                     IconImageSource="{OnPlatform iOS={local:ImageResource OilfieldCalc3.Icons.menu_black.png}}"
+                     Padding="{OnPlatform Default='20', iOS='20,40'}"
+                     BackgroundColor="{AppThemeBinding Dark={StaticResource DarkTransparentColor}, Light={StaticResource LightTransparentColor}}">
+            <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource DarkNavigationMenuColor}, Light={StaticResource LightNavigationMenuColor}}"
+                  RowDefinitions="50, *, 50">
+                <Grid Padding="20,10,0,0">
+                    <Label Text="{x:Static resources:AppResources.AppTitle}" 
+                           FontAttributes="Bold"
+                           Style="{StaticResource MediumLabelStyle}"/>
+                </Grid>
+                <StackLayout Margin="20,20,20,0" 
+                             Grid.Row="1" 
+                             Spacing="15"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" VerticalOptions="Start">
+                        <buttons:SfButton ImageSource="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.house_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.house_black.png}}"
+                                          Style="{StaticResource NavigationButtonStyle}"
+                                          Text="{x:Static resources:AppResources.MenuItemMain}"
+                                          Command="{x:Binding NavigateCommand}"
+                                          CommandParameter="MainPage"/>
+                        <buttons:SfButton ImageSource="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.formadd_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.formadd_black.png}}"   
+                                          Style="{StaticResource NavigationButtonStyle}"
+                                          Text="{x:Static resources:AppResources.MenuItemWellbore}"
+                                          Command="{x:Binding NavigateCommand}"
+                                          CommandParameter="WellboreListPage"/>
+                        <buttons:SfButton ImageSource="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.formadd_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.formadd_black.png}}"
+                                          Style="{StaticResource NavigationButtonStyle}"
+                                          Text="{x:Static resources:AppResources.MenuItemDrillstring}"
+                                          Command="{x:Binding NavigateCommand}"
+                                          CommandParameter="DrillstringListPage"/>
+                        <buttons:SfButton ImageSource="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.ruler_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.ruler_black.png}}"
+                                          Style="{StaticResource NavigationButtonStyle}"
+                                          Text="{x:Static resources:AppResources.MenuItemVolumes}"
+                                          Command="{x:Binding NavigateCommand}"
+                                          CommandParameter="VolumesPage"/>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <!-- middle spacer -->
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" VerticalOptions="End">
+                        <buttons:SfButton ImageSource="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.settingsgear_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.settingsgear_black.png}}"
+                                          Style="{StaticResource NavigationButtonStyle}"
+                                          VerticalOptions="End"
+                                          Text="{x:Static resources:AppResources.MenuItemSettings}"
+                                          Command="{x:Binding NavigateCommand}"
+                                          CommandParameter="SettingsTabbedPage"/>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </ContentPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>

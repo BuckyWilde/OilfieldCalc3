@@ -1,11 +1,112 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com"
-             x:Class="OilfieldCalc3.App">
-  <Application.Resources>
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:prism="http://prismlibrary.com"
+                        xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+                        x:Class="OilfieldCalc3.App">
+    <Application.Resources>
+        <!-- Light colors -->
+        <Color x:Key="LightPrimaryColor">WhiteSmoke</Color>
+        <Color x:Key="LightSecondaryColor">Black</Color>
+        <Color x:Key="LightPrimaryTextColor">Black</Color>
+        <Color x:Key="LightHighliteTextColor">Lime</Color>
+        <Color x:Key="LightUnavailableTextColor">LightGray</Color>
+        <Color x:Key="LightTransparentColor">Transparent</Color>
+        <Color x:Key="LightNavigationMenuColor">Aqua</Color>
+        <Color x:Key="LightPageBackgroundColor">#e8e8e8</Color>
+        <Color x:Key="LightPageContentColor">Whitesmoke</Color>
+        <Color x:Key="LightDestructiveTextColor">Red</Color>
+        <Color x:Key="LightListViewLabelTextColor">Black</Color>
+        <Color x:Key="LightListViewHeaderLabelColor">Black</Color>
 
-    <!-- Application resource dictionary -->
+        <!-- Dark colors -->
+        <Color x:Key="DarkPrimaryColor">Teal</Color>
+        <Color x:Key="DarkSecondaryColor">White</Color>
+        <Color x:Key="DarkPrimaryTextColor">White</Color>
+        <Color x:Key="DarkHighliteTextColor">hotpink</Color>
+        <Color x:Key="DarkUnavailableTextColor">Yellow</Color>
+        <Color x:Key="DarkTransparentColor">Transparent</Color>
+        <Color x:Key="DarkNavigationMenuColor">Purple</Color>
+        <Color x:Key="DarkPageBackgroundColor">black</Color>
+        <Color x:Key="DarkPageContentColor">darkgray</Color>
+        <Color x:Key="DarkDestructiveTextColor">Red</Color>
+        <Color x:Key="DarkListViewLabelTextColor">LightGray</Color>
+        <Color x:Key="DarkListViewHeaderLabelColor">LightGray</Color>
 
-  </Application.Resources>
+        <Style x:Key="ListViewHeaderLabel"
+               TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="Medium" />
+            <Setter Property="FontAttributes"
+                    Value="Bold" />
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Dark={StaticResource DarkListViewHeaderLabelColor}, Light={StaticResource LightListViewHeaderLabelColor}}" />
+        </Style>
+
+        <Style x:Key="ListViewLabel"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightListViewLabelTextColor}, Dark={StaticResource DarkListViewLabelTextColor}}" />
+        </Style>
+
+        <Style x:Key="sfListViewButton"
+               TargetType="buttons:SfButton">
+            <Setter Property="CornerRadius"
+                    Value="20" />
+            <Setter Property="ShowIcon"
+                    Value="True" />
+            <Setter Property="ImageWidth"
+                    Value="40" />
+            <Setter Property="ImageAlignment"
+                    Value="End" />
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+        </Style>
+
+        <Style x:Key="sfButton"
+               TargetType="buttons:SfButton">
+            <Setter Property="CornerRadius"
+                    Value="20" />
+            <Setter Property="ShowIcon"
+                    Value="False" />
+            <Setter Property="ImageWidth"
+                    Value="40" />
+            <Setter Property="ImageAlignment"
+                    Value="End" />
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+        </Style>
+
+        <Style x:Key="MediumLabelStyle"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+            <Setter Property="FontSize"
+                    Value="20" />
+        </Style>
+
+        <Style x:Key="SmallLabelStyle"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+            <Setter Property="FontSize"
+                    Value="Small" />
+        </Style>
+
+        <Style x:Key="NavigationButtonStyle"
+               TargetType="buttons:SfButton">
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightTransparentColor}, Dark={StaticResource DarkTransparentColor}}" />
+            <Setter Property="ImageWidth"
+                    Value="45" />
+            <Setter Property="ShowIcon"
+                    Value="True" />
+            <Setter Property="HorizontalTextAlignment"
+                    Value="Start" />
+        </Style>
+    </Application.Resources>
 </prism:PrismApplication>

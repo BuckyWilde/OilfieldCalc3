@@ -8,7 +8,7 @@ namespace OilfieldCalc3.Services
 {
     public interface IDataService
     {
-        Task<IEnumerable<T>> GetItemsSortedAsync<T>() where T : ITubular, new();
+        Task<List<T>> GetItemsSortedAsync<T>() where T : ITubular, new();
         Task<T> GetItemAsync<T>(int id) where T : ITubular, new();
         Task<int> SaveItemAsync(ITubular item);
         Task<int> DeleteItemAsync(ITubular item);

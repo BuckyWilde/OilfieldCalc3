@@ -1,11 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="OilfieldCalc3.Views.MainPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
              Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
-    </StackLayout>
+    <viewTemplate:ViewPageTemplate>
+        <viewTemplate:ViewPageTemplate.Header>
+            <StackLayout>
+                <Label Text="Header Area"/>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Header>
+
+        <viewTemplate:ViewPageTemplate.Body>
+            <StackLayout>
+                <Label Text="Main Content Area"/>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Body>
+
+        <viewTemplate:ViewPageTemplate.Footer>
+            <StackLayout>
+                <Label Text="Footer Area"/>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Footer>
+    </viewTemplate:ViewPageTemplate>
 
 </ContentPage>

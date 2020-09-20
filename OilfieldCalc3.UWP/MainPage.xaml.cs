@@ -23,6 +23,7 @@ namespace OilfieldCalc3.UWP
         {
             this.InitializeComponent();
 
+            Syncfusion.ListView.XForms.UWP.SfListViewRenderer.Init();
             LoadApplication(new OilfieldCalc3.App(new UwpInitializer()));
         }
     }

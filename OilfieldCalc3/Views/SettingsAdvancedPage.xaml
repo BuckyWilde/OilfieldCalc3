@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
+             xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OilfieldCalc3.Views.SettingsAdvancedPage"
+             Title="{Binding SettingsAdvancedPageTitle}">
+    <viewTemplate:ViewPageTemplate>
+        <viewTemplate:ViewPageTemplate.Header>
+            <StackLayout>
+                <Label Text="{x:Static resources:AppResources.String_AdminOptions}"/>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Header>
+
+        <viewTemplate:ViewPageTemplate.Body>
+            <StackLayout>
+                <TableView Intent="Settings">
+                    <TableRoot>
+                        <TableSection Title="{x:Static resources:AppResources.String_DatabaseOptions}"
+                                      TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}">
+                            <ViewCell>
+                                <StackLayout HorizontalOptions="StartAndExpand">
+                                    <syncfusion:SfButton Text="Clear Database" 
+                                                         Command="{Binding WipeDatabaseCommand}"
+                                                         Style="{StaticResource sfButton}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Body>
+
+        <viewTemplate:ViewPageTemplate.Footer>
+            <StackLayout>
+                <Label Text="{x:Static resources:AppResources.AppCopyright}"/>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Footer>
+    </viewTemplate:ViewPageTemplate>  
+</ContentPage>

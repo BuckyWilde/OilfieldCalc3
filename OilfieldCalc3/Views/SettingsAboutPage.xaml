@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
+             x:Class="OilfieldCalc3.Views.SettingsAboutPage"
+             Title="{Binding SettingsAboutPageTitle}">
+    <viewTemplate:ViewPageTemplate>
+        <viewTemplate:ViewPageTemplate.Header>
+            <StackLayout>
+                <Label Text="{x:Static resources:AppResources.AppTitle}"/>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Header>
+
+        <viewTemplate:ViewPageTemplate.Body>
+            <StackLayout>
+                <Label Text="{x:Static resources:AppResources.AboutMessage}" />
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Body>
+
+        <viewTemplate:ViewPageTemplate.Footer>
+            <StackLayout>
+                <Label Text="{x:Static resources:AppResources.AppCopyright}"/>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Footer>
+    </viewTemplate:ViewPageTemplate>
+</ContentPage>

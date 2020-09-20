@@ -3,7 +3,6 @@ using Prism;
 using Prism.Ioc;
 using UIKit;
 
-
 namespace OilfieldCalc3.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -24,11 +23,19 @@ namespace OilfieldCalc3.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App(new iOSInitializer()));
 
+            Syncfusion.ListView.XForms.iOS.SfListViewRenderer.Init();
+            Syncfusion.XForms.iOS.EffectsView.SfEffectsViewRenderer.Init();
+            Syncfusion.XForms.iOS.Border.SfBorderRenderer.Init();
+            Syncfusion.XForms.iOS.Buttons.SfButtonRenderer.Init();
+            Syncfusion.XForms.iOS.Expander.SfExpanderRenderer.Init();
+
             return base.FinishedLaunching(app, options);
         }
     }
 
+#pragma warning disable IDE1006 // Naming Styles
     public class iOSInitializer : IPlatformInitializer
+#pragma warning restore IDE1006 // Naming Styles
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {

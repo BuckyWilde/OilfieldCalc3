@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:prismNav="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:local="clr-namespace:OilfieldCalc3.Helpers;assembly=OilfieldCalc3"
+             xmlns:viewmodels="clr-namespace:OilfieldCalc3.ViewModels"
+             xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
+             xmlns:converters="clr-namespace:OilfieldCalc3.Converters"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OilfieldCalc3.Views.DrillstringListPage"
+             x:Name="ListPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBoolConverter x:Key="invertBool" />
+            <converters:ItemDraggingEventArgsConverter x:Key="itemDraggingEventArgsConverter" />
+            <converters:UnitValueMultiConverter x:Key="unitValueMultiConverter" />
+            <resources:AppResources x:Key="appResources" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{prismNav:NavigateTo DrillstringDetailPage}"
+                     Text="{x:Static resources:AppResources.String_Add}"
+                     Order="Primary"
+                     Priority="0"
+                     IconImageSource="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.add_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.add_black.png}}"/>
+    </ContentPage.ToolbarItems>
+
+    <viewTemplate:ViewPageTemplate>
+        <viewTemplate:ViewPageTemplate.Header>
+            <StackLayout>
+                <Label Style="{StaticResource SmallLabelStyle}">
+                    <Label.Text>
+                        <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                      ConverterParameter="ShortName">
+                            <Binding Path="TotalTubularLength" />
+                            <Binding Path="LongLengthUnit" />
+                            <Binding Source="{x:Static resources:AppResources.String_TotalLength}"/>
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Header>
+
+        <viewTemplate:ViewPageTemplate.Body>
+            <!--<StackLayout Orientation="Vertical">-->
+            <syncfusion:SfListView ItemsSource="{Binding DrillstringTubulars}" 
+                                   AutoFitMode="DynamicHeight" 
+                                   DragStartMode="OnDragIndicator"
+                                   IsScrollBarVisible="False"
+                                   x:Name="listView"
+                                   SelectionMode="None"
+                                   IsBusy="{Binding ListviewIsBusy}">
+                
+                <syncfusion:SfListView.Behaviors>
+                    <prism:EventToCommandBehavior EventName="ItemDragging" 
+                                                  Command="{Binding ItemDraggingCommand}" 
+                                                  EventArgsConverter="{StaticResource itemDraggingEventArgsConverter}"/>
+                </syncfusion:SfListView.Behaviors>
+                
+                <syncfusion:SfListView.DragDropController>
+                    <syncfusion:DragDropController UpdateSource="True" />
+                </syncfusion:SfListView.DragDropController>
+                
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Vertical">
+                            <Grid ColumnDefinitions="*, auto">
+                                <Expander x:Name="expanderCard"                                          
+                                          Grid.Column="0" >
+                                    <Expander.Header>
+                                        <Grid ColumnDefinitions="*, Auto, Auto" HeightRequest="35">
+                                            <StackLayout Orientation="Horizontal" 
+                                                         Grid.Column="0">
+                                                <Label Style="{StaticResource ListViewHeaderLabel}"
+                                                       Text="{Binding Path=ItemDescription}"/>
+                                                <!--Display this next label on UWP only-->
+                                                <ContentView>
+                                                    <OnPlatform x:TypeArguments="View">
+                                                        <On Platform="UWP">
+                                                            <Label Style="{StaticResource ListViewHeaderLabel}"
+                                                                   IsVisible="{Binding Source={x:Reference expanderCard}, Path=IsExpanded, Converter={StaticResource invertBool}}">
+                                                                <Label.Text>
+                                                                    <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                                  ConverterParameter="ShortName">
+                                                                        <Binding Path="OutsideDiameter" />
+                                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}" 
+                                                                                 Path="ShortLengthUnit" />
+                                                                        <Binding Source="{x:Static resources:AppResources.String_OD}"/>
+                                                                    </MultiBinding>
+                                                                </Label.Text>
+                                                            </Label>
+                                                        </On>
+                                                    </OnPlatform>
+                                                </ContentView>
+                                            </StackLayout>
+                                            <Label Style="{StaticResource ListViewHeaderLabel}"
+                                                   Grid.Column="1"
+                                                   HorizontalTextAlignment="End">
+                                                <Label.Text>
+                                                    <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                  ConverterParameter="ShortName">
+                                                        <Binding Path="Length" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}" 
+                                                                 Path="LongLengthUnit" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </Grid>
+                                    </Expander.Header>
+
+                                    <Expander.Content>
+                                        <StackLayout Padding="10, 0, 0, 10">
+                                            <Label Style="{StaticResource ListViewLabel}">
+                                                <Label.Text>
+                                                    <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                  ConverterParameter="ShortName">
+                                                        <Binding Path="OutsideDiameter" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}" 
+                                                                 Path="ShortLengthUnit" />
+                                                        <Binding Source="{x:Static resources:AppResources.String_OutsideDiameter}"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
+                                                <Label.Text>
+                                                    <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                  ConverterParameter="ShortName">
+                                                        <Binding Path="InsideDiameter" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}" 
+                                                                 Path="ShortLengthUnit" />
+                                                        <Binding Source="{x:Static resources:AppResources.String_InsideDiameter}"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
+                                                <Label.Text>
+                                                    <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                  ConverterParameter="ShortName">
+                                                        <Binding Path="AdjustedWeight" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}" 
+                                                                 Path="MassUnit" />
+                                                        <Binding Source="{x:Static resources:AppResources.String_AdjustedWieght}"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
+                                                <Label.Text>
+                                                    <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                  ConverterParameter="ShortName">
+                                                        <Binding Path="TotalWeight" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}" 
+                                                                 Path="MassUnit" />
+                                                        <Binding Source="{x:Static resources:AppResources.String_TotalWeight}"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
+                                                <Label.Text>
+                                                    <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                  ConverterParameter="ShortName">
+                                                        <Binding Path="InternalCapacityPerUnit" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}" 
+                                                                 Path="CapacityUnit" />
+                                                        <Binding Source="{x:Static resources:AppResources.String_Capacty}"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
+                                                <Label.Text>
+                                                    <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                  ConverterParameter="ShortName">
+                                                        <Binding Path="TotalInternalCapacity" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}" 
+                                                                 Path="VolumeUnit" />
+                                                        <Binding Source="{x:Static resources:AppResources.String_Volume}"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
+                                                <Label.Text>
+                                                    <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                  ConverterParameter="ShortName">
+                                                        <Binding Path="DryDisplacementPerUnit" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}" 
+                                                                 Path="CapacityUnit" />
+                                                        <Binding Source="{x:Static resources:AppResources.String_Displacement}"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label Style="{StaticResource ListViewLabel}">
+                                                <Label.Text>
+                                                    <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                  ConverterParameter="ShortName">
+                                                        <Binding Path="TotalDryDisplacement" />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type viewmodels:DrillstringListPageViewModel}}" 
+                                                                 Path="VolumeUnit" />
+                                                        <Binding Source="{x:Static resources:AppResources.String_TotalDisplacement}"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Grid ColumnDefinitions="*, *, *">
+                                                <buttons:SfButton Text="{x:Static resources:AppResources.EditString}" 
+                                                                  ImageSource="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.edit_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.edit_black.png}}"
+                                                                  Style="{StaticResource sfListViewButton}"  
+                                                                  Command="{Binding BindingContext.EditCommand, Source={x:Reference ListPage}}"
+                                                                  CommandParameter="{Binding .}"
+                                                                  Grid.Column="0" />
+                                                <buttons:SfButton Text="{x:Static resources:AppResources.DeleteString}"
+                                                                  ImageSource="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.trash_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.trash_black.png}}"
+                                                                  Style="{StaticResource sfListViewButton}"
+                                                                  TextColor="{AppThemeBinding Dark={StaticResource DarkDestructiveTextColor}, Light={StaticResource LightDestructiveTextColor} }"
+                                                                  Command="{Binding BindingContext.DeleteCommand, Source={x:Reference ListPage}}"
+                                                                  CommandParameter="{Binding .}"
+                                                                  Grid.Column="2" />
+                                            </Grid>
+                                        </StackLayout>
+                                    </Expander.Content>
+                                </Expander>
+                                <syncfusion:DragIndicatorView Grid.Column="1" 
+                                                              ListView="{x:Reference listView}" 
+                                                              HorizontalOptions="Center" 
+                                                              VerticalOptions="Start">
+                                    <Image Source="{AppThemeBinding Dark={local:ImageResource OilfieldCalc3.Icons.drag_whilte.png}, Light={local:ImageResource OilfieldCalc3.Icons.drag_black.png}}"
+                                           HeightRequest="30"
+                                           WidthRequest="30"/>
+                                </syncfusion:DragIndicatorView>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+        </viewTemplate:ViewPageTemplate.Body>
+
+        <viewTemplate:ViewPageTemplate.Footer>
+            <StackLayout>
+                <Grid ColumnDefinitions="*, auto">
+                    <!--region Footer Left-->
+                    <StackLayout Orientation="Vertical" 
+                                 Grid.Column="0" 
+                                 HorizontalOptions="Start">
+                        <Label Style="{StaticResource SmallLabelStyle}">
+                            <Label.Text>
+                                <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                  ConverterParameter="LongName">
+                                    <Binding Path="TotalVolume" />
+                                    <Binding Path="VolumeUnit" />
+                                    <Binding Source="{x:Static resources:AppResources.String_TotalCapacity}"/>
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                        <Label Style="{StaticResource SmallLabelStyle}">
+                            <Label.Text>
+                                <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                  ConverterParameter="LongName">
+                                    <Binding Path="TotalDisplacement" />
+                                    <Binding Path="VolumeUnit" />
+                                    <Binding Source="{x:Static resources:AppResources.String_TotalDisplacement}"/>
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                        <Label Style="{StaticResource SmallLabelStyle}">
+                            <Label.Text>
+                                <MultiBinding Converter="{StaticResource unitValueMultiConverter}"
+                                                                  ConverterParameter="LongName">
+                                    <Binding Path="TotalWeight" />
+                                    <Binding Path="MassUnit" />
+                                    <Binding Source="{x:Static resources:AppResources.String_TotalWeight}"/>
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                    </StackLayout>
+                    <!--#endregion-->
+
+                    <!--region Footer Right-->
+                    <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="1" HorizontalOptions="Start">
+                    </StackLayout>
+                    <!--#endregion-->
+                </Grid>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Footer>
+    </viewTemplate:ViewPageTemplate>
+
+</ContentPage>

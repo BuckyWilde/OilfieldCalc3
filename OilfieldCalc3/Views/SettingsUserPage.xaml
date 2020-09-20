@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:viewTemplate="clr-namespace:OilfieldCalc3.Views"
+             xmlns:resources="clr-namespace:OilfieldCalc3.Resx"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OilfieldCalc3.Views.SettingsUserPage"
+             Title="{Binding SettingsUserPageTitle}">
+    
+    <viewTemplate:ViewPageTemplate>
+        <viewTemplate:ViewPageTemplate.Header>
+            <StackLayout>
+                <!--<Label Text="Header Area"/>-->
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Header>
+
+        <viewTemplate:ViewPageTemplate.Body>
+            <StackLayout>
+                <TableView Intent="Settings">
+                    <TableRoot>
+                        <TableSection Title="{x:Static resources:AppResources.String_ColorOptions}"
+                                      TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="20,0,0,0">
+                                    <Label Text="{x:Static resources:AppResources.String_UseDarkMode}"
+                                           Style="{StaticResource SmallLabelStyle}"
+                                           VerticalOptions="Center" 
+                                           HorizontalOptions="StartAndExpand"/>
+                                    <Switch IsToggled="{Binding IsDarkMode, Mode=TwoWay}" >
+                                        <Switch.Behaviors>
+                                            <b:EventToCommandBehavior Command="{Binding ThemeSelectionChangedCommand}"
+                                                                      EventName="Toggled" />
+                                        </Switch.Behaviors>
+                                    </Switch>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Body>
+
+        <viewTemplate:ViewPageTemplate.Footer>
+            <StackLayout>
+                <!--<Label Text="Footer Area"/>-->
+            </StackLayout>
+        </viewTemplate:ViewPageTemplate.Footer>
+    </viewTemplate:ViewPageTemplate>
+</ContentPage>

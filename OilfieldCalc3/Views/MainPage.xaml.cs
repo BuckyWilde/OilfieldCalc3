@@ -1,6 +1,9 @@
-﻿namespace OilfieldCalc3.Views
+﻿using Xamarin.Forms;
+
+namespace OilfieldCalc3.Views
 {
-    public partial class MainPage
+    [Xamarin.Forms.Xaml.XamlCompilation(Xamarin.Forms.Xaml.XamlCompilationOptions.Compile)]
+    public partial class MainPage : ContentPage
     {
         public MainPage()
         {

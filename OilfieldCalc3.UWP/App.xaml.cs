@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Syncfusion.ListView.XForms.UWP;
+using Syncfusion.XForms.UWP.Border;
+using Syncfusion.XForms.UWP.Buttons;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -39,7 +43,15 @@ namespace OilfieldCalc3.UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+#if DEBUG
 
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+
+                this.DebugSettings.EnableFrameRateCounter = true;
+
+            }
+#endif
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -52,9 +64,17 @@ namespace OilfieldCalc3.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Xamarin.Forms.Forms.Init(e);
+                List<System.Reflection.Assembly> assembliesToInclude = new List<System.Reflection.Assembly>();
+                // Add all the renderer assemblies your app uses 
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                assembliesToInclude.Add(typeof(SfButtonRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(SfBorderRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(SfListViewRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.Expander.SfExpanderRenderer).GetTypeInfo().Assembly);
+
+                Xamarin.Forms.Forms.Init(e, assembliesToInclude);
+
+                if (e?.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
                 }
@@ -68,7 +88,7 @@ namespace OilfieldCalc3.UWP
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                rootFrame.Navigate(typeof(MainPage), e?.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

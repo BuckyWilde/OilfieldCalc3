@@ -12,20 +12,155 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\add_black.png" />
+    <None Remove="Icons\add_whilte.png" />
+    <None Remove="Icons\arrowdown_black.png" />
+    <None Remove="Icons\arrowdown_whilte.png" />
+    <None Remove="Icons\arrowup_black.png" />
+    <None Remove="Icons\arrowup_whilte.png" />
+    <None Remove="Icons\barcharts_black.png" />
+    <None Remove="Icons\barcharts_whilte.png" />
+    <None Remove="Icons\cancel_black.png" />
+    <None Remove="Icons\cancel_whilte.png" />
+    <None Remove="Icons\chevrondown_black.png" />
+    <None Remove="Icons\chevrondown_whilte.png" />
+    <None Remove="Icons\chevronup_black.png" />
+    <None Remove="Icons\chevronup_whilte.png" />
+    <None Remove="Icons\drag_black.png" />
+    <None Remove="Icons\drag_whilte.png" />
+    <None Remove="Icons\edit_black.png" />
+    <None Remove="Icons\edit_whilte.png" />
+    <None Remove="Icons\formadd_black.png" />
+    <None Remove="Icons\formadd_whilte.png" />
+    <None Remove="Icons\gear_black.png" />
+    <None Remove="Icons\gear_whilte.png" />
+    <None Remove="Icons\house_black.png" />
+    <None Remove="Icons\house_whilte.png" />
+    <None Remove="Icons\menu_black.png" />
+    <None Remove="Icons\menu_white.png" />
+    <None Remove="Icons\ruler_black.png" />
+    <None Remove="Icons\ruler_whilte.png" />
+    <None Remove="Icons\settingsgear_black.png" />
+    <None Remove="Icons\settingsgear_whilte.png" />
+    <None Remove="Icons\trash_black.png" />
+    <None Remove="Icons\trash_whilte.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\add_black.png" />
+    <EmbeddedResource Include="Icons\add_whilte.png" />
+    <EmbeddedResource Include="Icons\arrowdown_black.png" />
+    <EmbeddedResource Include="Icons\arrowdown_whilte.png" />
+    <EmbeddedResource Include="Icons\arrowup_black.png" />
+    <EmbeddedResource Include="Icons\arrowup_whilte.png" />
+    <EmbeddedResource Include="Icons\barcharts_black.png" />
+    <EmbeddedResource Include="Icons\barcharts_whilte.png" />
+    <EmbeddedResource Include="Icons\cancel_black.png" />
+    <EmbeddedResource Include="Icons\cancel_whilte.png" />
+    <EmbeddedResource Include="Icons\chevrondown_black.png" />
+    <EmbeddedResource Include="Icons\chevrondown_whilte.png" />
+    <EmbeddedResource Include="Icons\chevronup_black.png" />
+    <EmbeddedResource Include="Icons\chevronup_whilte.png" />
+    <EmbeddedResource Include="Icons\drag_black.png" />
+    <EmbeddedResource Include="Icons\drag_whilte.png" />
+    <EmbeddedResource Include="Icons\edit_black.png" />
+    <EmbeddedResource Include="Icons\edit_whilte.png" />
+    <EmbeddedResource Include="Icons\formadd_black.png" />
+    <EmbeddedResource Include="Icons\formadd_whilte.png" />
+    <EmbeddedResource Include="Icons\gear_black.png" />
+    <EmbeddedResource Include="Icons\gear_whilte.png" />
+    <EmbeddedResource Include="Icons\house_black.png" />
+    <EmbeddedResource Include="Icons\house_whilte.png" />
+    <EmbeddedResource Include="Icons\menu_black.png" />
+    <EmbeddedResource Include="Icons\menu_white.png" />
+    <EmbeddedResource Include="Icons\ruler_black.png" />
+    <EmbeddedResource Include="Icons\ruler_whilte.png" />
+    <EmbeddedResource Include="Icons\settingsgear_black.png" />
+    <EmbeddedResource Include="Icons\settingsgear_whilte.png" />
+    <EmbeddedResource Include="Icons\trash_black.png" />
+    <EmbeddedResource Include="Icons\trash_whilte.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
+    <PackageReference Include="Syncfusion.Licensing" Version="18.2.0.57" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.2.0.57" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.2.0.57" />
+    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="18.2.0.57" />
+    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="18.2.0.57" />
+    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="18.2.0.57" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.2.0.57" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.5.3.2" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Behaviors\" />
-    <Folder Include="Converters\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Tubulars\Tubulars.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resx\AppResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resx\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DrillstringDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DrillstringListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NavigationMasterDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SettingsAboutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SettingsAdvancedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SettingsTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SettingsUnitsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SettingsUserPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewPageTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\WellboreDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\WellboreListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\WipeDatabaseDialogPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
