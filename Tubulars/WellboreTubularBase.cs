@@ -94,7 +94,7 @@ namespace Tubulars
             //string smallLengthUnit = Preferences.Get("smallLengthUnit", "mm");
 
             //return this.InsideDiameter + smallLengthUnit + " ID " + this.ItemDescription;
-            return string.Format("{0} ID {1}", this.InsideDiameter, this.ItemDescription);
+            return $"{this.InsideDiameter} ID {this.ItemDescription}";
         }
     }
 }

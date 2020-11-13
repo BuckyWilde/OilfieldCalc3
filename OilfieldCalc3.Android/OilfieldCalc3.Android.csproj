@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
-      <Version>3.3.0</Version>
+      <Version>3.3.1</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -79,25 +79,25 @@
       <Version>1.7.335</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Licensing">
-      <Version>18.2.0.57</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Buttons">
-      <Version>18.2.0.57</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
-      <Version>18.2.0.57</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.DataSource">
-      <Version>18.2.0.57</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Expander">
-      <Version>18.2.0.57</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.GridCommon">
-      <Version>18.2.0.57</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
-      <Version>18.2.0.57</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
       <Version>4.5.4</Version>
@@ -105,9 +105,9 @@
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat">
       <Version>28.0.0.3</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.5.3.2" />
-    <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="8.0.0.1909" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainApplication.cs" />

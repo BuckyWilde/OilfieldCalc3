@@ -15,13 +15,12 @@ namespace OilfieldCalc3
         public App(IPlatformInitializer initializer)
             : base(initializer)
         {
-            
         }
 
         protected override async void OnInitialized()
         {
             //Register Syncfusion license
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzExNjUwQDMxMzgyZTMyMmUzMEVKNUk4dHZYWk12T0pTdWovNDFBZzZIQmFuU3htRlczQkxrTXYyaG56b289;MzExNjUxQDMxMzgyZTMyMmUzMG1EUXBBM3BvRnovUk8xZm0weSsxV1hueGpIOGtaYitDZHQyRHBEdmJySG89;MzExNjUyQDMxMzgyZTMyMmUzMGFUVUlFMnNGL09XT1E0UjBYYTY4bTM3dXExUWlOeU43enhUeUVaS3BwdHM9;MzExNjUzQDMxMzgyZTMyMmUzMFhPWE9jcVpDbW90NDZYbFFjdnpXVHBzVjhhRy9vaG1ycTIxTGRSbTU2cjQ9;MzExNjU0QDMxMzgyZTMyMmUzMFZKNm5nRGhtQjlMZFVrSDNDK1lxdHNyaE45amxLeTN3K3ZDL0FmTFRDTEU9;MzExNjU1QDMxMzgyZTMyMmUzMGYyTm1BMm5VTWVNbitpQWxBMVZlQ0trcklqVEFNTVM0NzFBVzc0RktrTVk9;MzExNjU2QDMxMzgyZTMyMmUzMGNpYU5IaWdWM2hDZ08ra1NKN2dJTnFhMWY0V1g4dXFkSGlnMklTRXFvODg9;MzExNjU3QDMxMzgyZTMyMmUzMEVtK1JMVTdhdnowRGlwd1lra294KzNtTDRGeTZGWVQvVnRQbkRObTJyeVE9;MzExNjU4QDMxMzgyZTMyMmUzMGJhMXo1enRwNWF5cWdiK3RxUDhXd0RrOGNmVDJCcWZTVTRNZ0tpQ25iWnc9;NT8mJyc2IWhia31hfWN9Z2doYmF8YGJ8ampqanNiYmlmamlmanMDHmggMDwnJ30xOjcmPzgyEzQ+Mjo/fTA8Pg==;MzExNjU5QDMxMzgyZTMyMmUzMFlsd1kvRjVyWmp0WVVmTGtpaHY5QndsbkppS1FONHllMDBYYll4azBWVjA9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzQxNzIyQDMxMzgyZTMzMmUzMGtwNWJyTDVPZmRwMmJBQ0VWSE01MW5adlE1RkpqYzNVMkZ3WmlPS0FiQkE9;MzQxNzIzQDMxMzgyZTMzMmUzMGx6WmM0Um1wa0s5enJudlA0bHorenBjUk5vS0Q1amNWUE1udHVUUXZFU3M9;MzQxNzI0QDMxMzgyZTMzMmUzMEwwWVVCV1d4OFlvRFRWSFAzelpPVUU4Y1g4cFNkdDFkYm8wTFd5MXkrblU9;MzQxNzI1QDMxMzgyZTMzMmUzMGdUc1pZZlljdG81NmxONm1NZ3ZsMXJlclRlWGFVY0RQMTVhVzlCMHR5bFU9;MzQxNzI2QDMxMzgyZTMzMmUzMFpGYXlLSXJnQmdYTmYzb2pYWFZKbW8wSk0xZFZMbS9HbCtHdzVLWGZ0UEU9;MzQxNzI3QDMxMzgyZTMzMmUzMG9pQUVRQ1dxZy9ZOHd5TFhORmtrUFJKdGxMTXFxQXpTdVl0UE5YNUNFLzQ9;MzQxNzI4QDMxMzgyZTMzMmUzMGgzRnRUWjIwcWpGZzlpNkNRbnZXVnNBQUk1YmtGSE1KUG5DNno5RTltME09;MzQxNzI5QDMxMzgyZTMzMmUzMFR4bE51TkJFMWVPVE5DVDU3elFQeS9VWDUzTEZKMVBIRU9oSDcyNXplZE09;MzQxNzMwQDMxMzgyZTMzMmUzMGhZM3ZzUWZ0bHpOaDZNem85bC9NeUFpUzVOaitHYW5teGtnTXRITFN2Y009;MzQxNzMxQDMxMzgyZTMzMmUzMGpYdVJ4eUlZM1VwSEw5UXNNK2ZRNnVRcytrQWt3YXdIVUczU0Z2ZFNGMms9");
 
             InitializeComponent();
             Device.SetFlags(new string[] { "AppTheme_Experimental", "Expander_Experimental", "SwipeView_Experimental", "DragAndDrop_Experimental" });

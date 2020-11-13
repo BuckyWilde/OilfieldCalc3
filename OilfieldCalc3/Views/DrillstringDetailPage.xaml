@@ -16,13 +16,16 @@
 
         <viewTemplate:ViewPageTemplate.Body>
             <StackLayout>
-                <Label Text="Main Content Area"/>
+                <Picker Title="Description" />
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Body>
 
         <viewTemplate:ViewPageTemplate.Footer>
             <StackLayout>
-                <Label Text="Footer Area"/>
+                <Label Text="Wet Displacement per unit"/>
+                <Label Text="{Binding WetDisplacementPerUnit}"/>
+                <Label Text="Total Wet Displacement"/>
+                <Label Text="{Binding TotalWetDisplacement}"/>
             </StackLayout>
         </viewTemplate:ViewPageTemplate.Footer>
     </viewTemplate:ViewPageTemplate>

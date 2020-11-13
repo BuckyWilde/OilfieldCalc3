@@ -8,6 +8,6 @@ namespace Tubulars.WellboreTubulars
     {
         public override string ItemDescription => "Open Hole";
 
-        public override int WashoutFactor { get; set; } = 0;
+        public override int WashoutFactor { get; set; }
     }
 }
